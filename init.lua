@@ -1,0 +1,5 @@
+require('settings')
+require('plugins')
+require('internal.packer_commands')
+require('lsp.setup')
+require('mappings')
