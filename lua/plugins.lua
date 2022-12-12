@@ -16,7 +16,7 @@ return require('packer').startup({
     use { 'kyazdani42/nvim-web-devicons' }
 
 
-    -- Themes
+    -- Glamour
     use { 'folke/tokyonight.nvim', config = "require('theme')" }
 
     -- Treesitter
@@ -25,6 +25,8 @@ return require('packer').startup({
     use { 'p00f/nvim-ts-rainbow', after = { 'nvim-treesitter' } }
     use { 'nvim-treesitter/playground', after = { 'nvim-treesitter' } }
     use { 'm-demare/hlargs.nvim', config = function() require('hlargs').setup({ color = "#F7768E" }) end }
+    use { 'nvim-treesitter/nvim-treesitter-textobjects', after = { 'nvim-treesitter' } }
+    use { 'RRethy/nvim-treesitter-textsubjects', after = { 'nvim-treesitter' } }
 
     -- UI
     use { 'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter" }
