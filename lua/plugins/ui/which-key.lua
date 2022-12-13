@@ -118,6 +118,18 @@ local normal_mode_mappings = {
     r = { '<cmd>set norelativenumber!<CR>', 'relative number' },
   },
 
+  b = {
+    name = "Buffer",
+    b = { '<cmd>BufferMovePrevious<CR>', 'Move back' },
+    c = { '<cmd>BufferCloseAllButCurrent<CR>', 'Close but current' },
+    d = { '<cmd>BufferOrderByDirectory<CR>', 'Order by directory' },
+    f = { '<cmd>bfirst<CR>', 'First buffer' },
+    l = { '<cmd>BufferCloseBuffersLeft<CR>', 'Close Left' },
+    r = { '<cmd>BufferCloseBuffersRight<CR>', 'Close Right' },
+    n = { '<cmd>BufferMoveNext<CR>', 'Move next' },
+    p = { '<cmd>BufferPick<CR>', 'Pick Buffer' },
+  },
+
 
 
   [" "] = { '<cmd>:lua vim.lsp.buf.format()<CR>', 'format' },

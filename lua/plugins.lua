@@ -32,7 +32,7 @@ return require('packer').startup({
     -- UI
     use { 'folke/which-key.nvim', config = "require('plugins.ui.which-key')", event = "BufWinEnter" }
     use { 'kyazdani42/nvim-tree.lua', config = "require('plugins.ui.tree')" }
-    use { 'akinsho/bufferline.nvim', tag = "v3.*", config = "require('plugins.ui.bufferline')" }
+    use { 'romgrk/barbar.nvim', wants = 'nvim-web-devicons', config = "require('plugins.ui.barbar')" }
 
     -- LSP Base
     use { 'williamboman/mason.nvim' }

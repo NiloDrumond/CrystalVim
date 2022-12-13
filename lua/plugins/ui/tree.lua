@@ -1,6 +1,6 @@
 local utils = require('utils')
 local nvim_tree_events = require('nvim-tree.events')
--- local bufferline_api = require('bufferline.api')
+local bufferline_api = require('bufferline.api')
 
 local TREE_WIDTH = 40
 
@@ -16,8 +16,7 @@ local git_icons = {
 
 local keymappings = {
   { key = { "<CR>", "<2-LeftMouse>" }, action = "edit" },
-  -- <C-e> keymapping cannot be set because it's used for toggling nvim-tree
-  -- { key = "<C-e>",                        action = "edit_in_place" },
+  { key = "<C-e>", action = "edit_in_place" },
   { key = { "O" }, action = "edit_no_picker" },
   { key = { "<2-RightMouse>", "<C-]>" }, action = "cd" },
   { key = "<C-v>", action = "vsplit" },
@@ -177,11 +176,12 @@ require 'nvim-tree'.setup {
   }
 }
 
+vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>lua require'nvim-tree'.toggle()<CR>", { noremap = true, silent = true })
 
--- nvim_tree_events.on_tree_open(function()
---   bufferline_api.set_offset(TREE_WIDTH + 1, utils.add_whitespaces(13) .. '             ')
--- end)
---
--- nvim_tree_events.on_tree_close(function()
---   bufferline_api.set_offset(0)
--- end)
+nvim_tree_events.subscribe('TreeOpen', function()
+  bufferline_api.set_offset(TREE_WIDTH + 1, utils.add_whitespaces(13) .. '             ')
+end)
+
+nvim_tree_events.subscribe('TreeClose', function()
+  bufferline_api.set_offset(0)
+end)
