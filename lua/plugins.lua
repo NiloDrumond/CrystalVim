@@ -15,7 +15,6 @@ return require('packer').startup({
     -- Pre-requisites
     use { 'kyazdani42/nvim-web-devicons' }
 
-
     -- Glamour
     use { 'folke/tokyonight.nvim', config = "require('theme')" }
 
@@ -27,9 +26,13 @@ return require('packer').startup({
     use { 'm-demare/hlargs.nvim', config = function() require('hlargs').setup({ color = "#F7768E" }) end }
     use { 'nvim-treesitter/nvim-treesitter-textobjects', after = { 'nvim-treesitter' } }
     use { 'RRethy/nvim-treesitter-textsubjects', after = { 'nvim-treesitter' } }
+    use { 'nvim-treesitter/nvim-treesitter-context', after = { 'nvim-treesitter' } }
+    use { 'drybalka/tree-climber.nvim', after = { 'nvim-treesitter' } }
 
     -- UI
-    use { 'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter" }
+    use { 'folke/which-key.nvim', config = "require('plugins.ui.which-key')", event = "BufWinEnter" }
+    use { 'kyazdani42/nvim-tree.lua', config = "require('plugins.ui.tree')" }
+    use { 'akinsho/bufferline.nvim', tag = "v3.*", config = "require('plugins.ui.bufferline')" }
 
     -- LSP Base
     use { 'williamboman/mason.nvim' }

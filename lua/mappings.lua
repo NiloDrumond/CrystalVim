@@ -12,11 +12,21 @@ keymap("n", "<C-k>", "<C-w>k", silent)
 keymap("n", "<C-l>", "<C-w>l", silent)
 
 -- H to move to the first non-blank character of the line
-keymap("n", "H", "^", silent)
+-- keymap("n", "H", "^", silent)
 
 -- Move selected line / block of text in visual mode
 keymap("x", "K", ":move '<-2<CR>gv-gv", silent)
 keymap("x", "J", ":move '>+1<CR>gv-gv", silent)
+
+-- Navigation around the syntax-tree
+keymap({ 'n', 'v', 'o' }, 'H', "<cmd>lua require('tree-climber').goto_parent()<CR>", silent)
+keymap({ 'n', 'v', 'o' }, 'L', "<cmd>lua require('tree-climber').goto_child()<CR>", silent)
+keymap({ 'n', 'v', 'o' }, 'J', "<cmd>lua require('tree-climber').goto_next()<CR>", silent)
+keymap({ 'n', 'v', 'o' }, 'K', "<cmd>lua require('tree-climber').goto_prev()<CR>", silent)
+keymap({ 'v', 'o' }, 'in', "<cmd>lua require('tree-climber').select_node()<CR>", silent)
+keymap('n', '<C-k>', "<cmd>lua require('tree-climber').swap_prev()<CR>", silent)
+keymap('n', '<C-j>', "<cmd>lua require('tree-climber').swap_next()<CR>", silent)
+keymap('n', '<C-w>', "<cmd>lua require('tree-climber').highlight_node()<CR>", silent)
 
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Editing                                                  │
@@ -61,6 +71,9 @@ end
 -- Comment Box
 keymap("n", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", silent)
 keymap("v", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", silent)
+
+-- File explorer
+keymap("n", "<leader>e", "<cmd>lua require'nvim-tree'.toggle()<CR>", silent)
 
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Searching                                                │
@@ -137,10 +150,10 @@ keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<CR>", silent)
 keymap("v", "<leader>cf", "<cmd>'<.'>lua vim.lsp.buf.range_formatting()<CR>", silent)
 keymap("n", "<leader>cl", "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", silent)
 keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", silent)
-keymap("n", "L", "<cmd>lua vim.lsp.buf.signature_help()<CR>", silent)
+keymap("n", "M", "<cmd>lua vim.lsp.buf.signature_help()<CR>", silent)
 keymap("n", "]g", "<cmd>lua vim.diagnostic.goto_next({ float = { border = 'rounded', max_width = 100 }})<CR>", silent)
 keymap("n", "[g", "<cmd>lua vim.diagnostic.goto_prev({ float = { border = 'rounded', max_width = 100 }})<CR>", silent)
-keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", silent)
+keymap("n", "m", "<cmd>lua vim.lsp.buf.hover()<CR>", silent)
 -- keymap("n", "K", function()
 --   local winid = require('ufo').peekFoldedLinesUnderCursor()
 --   if not winid then
