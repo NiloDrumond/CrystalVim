@@ -26,7 +26,7 @@ keymap({ 'n', 'v', 'o' }, 'K', "<cmd>lua require('tree-climber').goto_prev()<CR>
 keymap({ 'v', 'o' }, 'in', "<cmd>lua require('tree-climber').select_node()<CR>", silent)
 keymap('n', '<C-k>', "<cmd>lua require('tree-climber').swap_prev()<CR>", silent)
 keymap('n', '<C-j>', "<cmd>lua require('tree-climber').swap_next()<CR>", silent)
-keymap('n', '<C-w>', "<cmd>lua require('tree-climber').highlight_node()<CR>", silent)
+keymap('n', '<C-r>', "<cmd>lua require('tree-climber').highlight_node()<CR>", silent)
 
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Editing                                                  │

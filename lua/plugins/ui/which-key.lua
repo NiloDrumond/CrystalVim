@@ -150,13 +150,48 @@ local visual_mode_mappings = {
     f = { 'range format' },
   },
 
+
   g = {
     name = "Git",
-    h = {
-      name = "Hunk",
-      r = "reset hunk",
-      s = "stage hunk",
+    -- b = { '<cmd>lua require("internal.blame").open()<CR>', 'blame' },
+    -- B = { '<cmd>Telescope git_branches<CR>', 'branches' },
+    c = {
+      name = 'Conflict',
+      -- b = { '<cmd>GitConflictChooseBoth<CR>', 'choose both' },
+      -- n = { '<cmd>GitConflictNextConflict<CR>', 'move to next conflict' },
+      -- o = { '<cmd>GitConflictChooseOurs<CR>', 'choose ours' },
+      -- p = { '<cmd>GitConflictPrevConflict<CR>', 'move to prev conflict' },
+      -- t = { '<cmd>GitConflictChooseTheirs<CR>', 'choose theirs' },
+      -- r = { '<cmd>GitConflictRefresh<CR>', 'refresh' }
     },
+    -- d = { '<cmd>lua require("plugins.git.diffview").toggle_file_history()<CR>', 'diff file' },
+    -- f = { '<cmd>Telescope git_files<CR>', 'git files' },
+    g = { '<cmd>LazyGit<CR>', 'lazygit' },
+    -- h = {
+    --   name = "Hunk",
+    --   d = "diff hunk",
+    --   p = "preview",
+    --   R = "reset buffer",
+    --   r = "reset hunk",
+    --   s = "stage hunk",
+    --   S = "stage buffer",
+    --   t = "toggle deleted",
+    --   u = "undo stage",
+    -- },
+    l = {
+      name = "Log",
+      -- A = { "<cmd>lua require('plugins.telescope').my_git_commits()<CR>", "commits (Telescope)" },
+      a = { "<cmd>LazyGitFilter<CR>", "commits" },
+      -- C = { "<cmd>lua require('plugins.telescope').my_git_bcommits()<CR>", "buffer commits (Telescope)" },
+      c = { "<cmd>LazyGitFilterCurrentFile<CR>", "buffer commits" },
+    },
+    -- m = { "blame line" },
+    -- s = { '<cmd>lua require("plugins.git.diffview").toggle_status()<CR>', 'status' },
+    -- w = {
+    --   name = "Worktree",
+    --   w = "worktrees",
+    --   c = "create worktree",
+    -- }
   },
 
   p = {
@@ -176,3 +211,28 @@ local visual_mode_mappings = {
 
 wk.register(normal_mode_mappings, opts)
 -- wk.register(visual_mode_mappings, visual_opts)
+
+--  ╭──────────────────────────────────────────────────────────╮
+--  │ Attachables                                              │
+--  ╰──────────────────────────────────────────────────────────╯
+
+
+local function attach_spectre(bufnr)
+  wk.register({
+    ["R"] = { '[SPECTRE] Replace all' },
+    ["o"] = { '[SPECTRE] Show options' },
+    ["q"] = { '[SPECTRE] Send all to quicklist' },
+    ["v"] = { '[SPECTRE] Change view mode' },
+  }, {
+    buffer = bufnr,
+    mode = "n", -- NORMAL mode
+    prefix = "<leader>",
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false, -- use `nowait` when creating keymaps
+  })
+end
+
+return {
+  attach_spectre
+}

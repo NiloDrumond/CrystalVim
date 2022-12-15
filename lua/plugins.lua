@@ -14,6 +14,7 @@ return require('packer').startup({
 
     -- Pre-requisites
     use { 'kyazdani42/nvim-web-devicons' }
+    use { 'nvim-lua/plenary.nvim' }
 
     -- Glamour
     use { 'folke/tokyonight.nvim', config = "require('theme')" }
@@ -42,6 +43,8 @@ return require('packer').startup({
     -- LSP addons
     use { 'jose-elias-alvarez/typescript.nvim' }
 
+    -- Refactor
+    use { 'nvim-pack/nvim-spectre' }
 
     if packer_bootstrap then
       require('packer').sync()
