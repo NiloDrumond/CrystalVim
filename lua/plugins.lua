@@ -46,6 +46,13 @@ return require('packer').startup({
     -- Refactor
     use { 'nvim-pack/nvim-spectre' }
 
+    -- Movement
+    use { 'gbprod/stay-in-place.nvim', config = function() require('stay-in-place').setup({}) end }
+
+    -- Git
+    use { 'kdheepak/lazygit.nvim' }
+
+
     if packer_bootstrap then
       require('packer').sync()
     end
