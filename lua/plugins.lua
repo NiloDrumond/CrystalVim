@@ -38,6 +38,7 @@ return require('packer').startup({
     use { 'kyazdani42/nvim-tree.lua', config = "require('plugins.ui.tree')" }
     use { 'romgrk/barbar.nvim', wants = 'nvim-web-devicons', config = "require('plugins.ui.barbar')" }
     use { 'stevearc/dressing.nvim', config = "require('plugins.ui.dressing')" }
+    use { 'akinsho/nvim-toggleterm.lua', tag = '*', config = "require('plugins.ui.toggleterm')" }
 
     -- LSP Base
     use { 'williamboman/mason.nvim' }
