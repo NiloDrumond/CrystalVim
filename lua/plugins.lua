@@ -23,6 +23,7 @@ return require('packer').startup({
     use { 'NvChad/nvim-colorizer.lua', config = "require('plugins.glamour.colorizer')" }
     use { 'lukas-reineke/indent-blankline.nvim', config = "require('plugins.glamour.indent')" }
     use { 'danilamihailov/beacon.nvim' }
+    use { 'EdenEast/nightfox.nvim', config = "require('plugins.glamour.nightfox')" }
 
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.syntax.treesitter')" }
@@ -40,6 +41,7 @@ return require('packer').startup({
     use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }
     use { 'numToStr/Comment.nvim', config = "require('plugins.syntax.comment')", after = "nvim-ts-context-commentstring" }
     use { 'LudoPinelli/comment-box.nvim' }
+    use { 'L3MON4D3/LuaSnip', requires = { 'rafamadriz/friendly-snippets' }, after = 'cmp_luasnip' }
 
     -- UI
     use { 'folke/which-key.nvim', config = "require('plugins.ui.which-key')", event = "BufWinEnter" }
@@ -49,13 +51,22 @@ return require('packer').startup({
     use { 'akinsho/nvim-toggleterm.lua', tag = '*', config = "require('plugins.ui.toggleterm')" }
 
     -- LSP Base
-    use { 'williamboman/mason.nvim' }
+    use { 'williamboman/mason.nvim', config = "require('plugins.lsp.mason')" }
     use { 'williamboman/mason-lspconfig.nvim' }
     use { 'neovim/nvim-lspconfig' }
 
     -- LSP addons
     use { 'jose-elias-alvarez/typescript.nvim' }
-    use { 'folke/lsp-trouble.nvim', config = "require('lsp.trouble')" }
+    use { 'folke/lsp-trouble.nvim', config = "require('plugins.lsp.trouble')" }
+
+    -- CMP
+    use { 'hrsh7th/nvim-cmp', event = 'InsertEnter', config = "require('plugins.lsp.cmp')" }
+    use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }
+    use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
+
 
     -- Refactor
     use { 'nvim-pack/nvim-spectre' }

@@ -1,6 +1,3 @@
-require('lsp.mason')
-
-
 local lspconfig = require("lspconfig")
 
 local handlers = {
@@ -9,7 +6,6 @@ local handlers = {
 }
 
 
--- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 
 local typescript_ok, typescript = pcall(require, 'typescript')

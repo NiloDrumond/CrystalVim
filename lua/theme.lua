@@ -31,16 +31,23 @@ require('tokyonight').setup({
   --- function will be called with a ColorScheme table
   on_colors = function(colors)
     colors.magenta = "#DB48B9"
-    colors.blue = "#667DFF"
+    -- colors.blue = "#668DFF"
+    colors.blue = "#7595ff"
     colors.blue1 = "#1FBBDE"
     colors.cyan = "#47BCFF"
     colors.border = "#1A1B26"
+    colors.purple = "#a379ec"
   end,
 
   --- You can override specific highlights to use other groups or a hex color
   --- fucntion will be called with a Highlights and ColorScheme table
-  on_highlights = function(highlights, colors)
+  on_highlights = function(hl, c)
+    hl.NvimTreeRootFolder = {
+      fg = c.orange
+    }
 
+    hl["@keyword"] = {fg = c.purple }
+    hl["@function.macro"] = { fg = c.red}
 
   end,
 })
