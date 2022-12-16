@@ -159,4 +159,4 @@ keymap("n", "m", "<cmd>lua vim.lsp.buf.hover()<CR>", silent)
 --   end
 -- end)
 
-keymap("n", "gm", "<cmd>TSHighlightCapturesUnderCursor<CR>", silent)
+keymap("n", "gt", "<cmd>TSHighlightCapturesUnderCursor<CR>", silent)

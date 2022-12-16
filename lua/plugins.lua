@@ -51,7 +51,12 @@ return require('packer').startup({
 
     -- Git
     use { 'kdheepak/lazygit.nvim' }
-
+    use { 'akinsho/git-conflict.nvim', tag = "*", config = "require('plugins.git.conflict')" }
+    use { 'lewis6991/gitsigns.nvim',
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = "require('plugins.git.signs')",
+      event = "BufRead"
+    }
 
     if packer_bootstrap then
       require('packer').sync()
