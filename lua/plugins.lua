@@ -13,6 +13,7 @@ return require('packer').startup({
     use 'wbthomason/packer.nvim'
 
     -- Pre-requisites
+    use { 'lewis6991/impatient.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'nvim-lua/plenary.nvim' }
     use { 'MunifTanjim/nui.nvim' }
@@ -54,12 +55,20 @@ return require('packer').startup({
 
     -- Movement
     use { 'gbprod/stay-in-place.nvim', config = function() require('stay-in-place').setup({}) end }
+    use { 'mg979/vim-visual-multi' }
 
     -- General
     use { 'AndrewRadev/splitjoin.vim' }
     use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }
     use { 'numToStr/Comment.nvim', config = "require('plugins.comment')", after = "nvim-ts-context-commentstring" }
     use { 'LudoPinelli/comment-box.nvim' }
+    use { 'kylechui/nvim-surround', config = function() require("nvim-surround").setup({}) end }
+    -- NOTE: table may be useful someday
+    -- use { 'dhruvasagar/vim-table-mode' }
+    use { 'nacro90/numb.nvim', config = "require('plugins.numb')" }
+    use { 'folke/todo-comments.nvim', config = "require('plugins.todo-comments')" }
+    use { 'folke/zen-mode.nvim', config = "require('plugins.zen')" }
+    use { 'folke/twilight.nvim', config = "require('plugins.twilight')" }
 
 
     -- Git

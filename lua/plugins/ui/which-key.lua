@@ -246,6 +246,20 @@ local function attach_spectre(bufnr)
   })
 end
 
+local function attach_zen(bufnr)
+  wk.register({
+    ["z"] = { '<cmd>ZenMode<CR>', 'zen' },
+  }, {
+    buffer = bufnr,
+    mode = "n", -- NORMAL mode
+    prefix = "<leader>",
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false, -- use `nowait` when creating keymaps
+  })
+end
+
 return {
-  attach_spectre
+  attach_spectre = attach_spectre,
+  attach_zen = attach_zen,
 }
