@@ -1,15 +1,49 @@
 local cmp = require('cmp')
+local icons = require('icons')
+local lspkind = require('lspkind')
+
+local buffer_option = {
+  -- Complete from all visible buffers (splits)
+  get_bufnrs = function()
+    local bufs = {}
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      bufs[vim.api.nvim_win_get_buf(win)] = true
+    end
+    return vim.tbl_keys(bufs)
+  end
+}
+
+
+local source_mapping = {
+  npm                     = icons.terminal .. 'NPM',
+  nvim_lsp                = icons.code .. 'LSP',
+  nvim_lsp_signature_help = icons.func .. 'SIG',
+  buffer                  = icons.buffer .. 'BUF',
+  nvim_lua                = icons.bomb,
+  luasnip                 = icons.snippet .. 'SNP',
+  calc                    = icons.calculator,
+  path                    = icons.folderOpen2,
+  treesitter              = icons.tree,
+  zsh                     = icons.terminal .. 'ZSH',
+}
+
 
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
+
   window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered({
+      winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder"
+    }),
+    documentation = cmp.config.window.bordered({
+      winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder"
+    }),
   },
+
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -17,12 +51,32 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
+
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'luasnip' }, -- For luasnip users.
-  }, {
-    { name = 'buffer' },
-  })
+    { name = 'buffer', keyword_length = 5, option = buffer_option, max_item_count = 8 },
+    { name = 'nvim_lua' },
+    { name = 'path' },
+  }),
+
+  sorting = {
+    comparators = {
+      cmp.config.compare.recently_used,
+    }
+  },
+
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.kind = lspkind.symbolic(vim_item.kind, { with_text = true })
+      local menu = source_mapping[entry.source.name]
+      local maxwidth = 50
+
+      vim_item.menu = menu
+      vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
+
+      return vim_item
+    end
+  },
 })
 
 -- Set configuration for specific filetype.
@@ -33,6 +87,10 @@ cmp.setup.filetype('gitcommit', {
     { name = 'buffer' },
   })
 })
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ Cmdline Setup                                            │
+-- ╰──────────────────────────────────────────────────────────╯
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
@@ -92,16 +150,16 @@ cmp.setup.cmdline(':', {
 -- -- │ Setup                                                    │
 -- -- ╰──────────────────────────────────────────────────────────╯
 -- local source_mapping = {
---   npm                     = EcoVim.icons.terminal .. 'NPM',
---   nvim_lsp                = EcoVim.icons.code .. 'LSP',
---   nvim_lsp_signature_help = EcoVim.icons.func .. 'SIG',
---   buffer                  = EcoVim.icons.buffer .. 'BUF',
---   nvim_lua                = EcoVim.icons.bomb,
---   luasnip                 = EcoVim.icons.snippet .. 'SNP',
---   calc                    = EcoVim.icons.calculator,
---   path                    = EcoVim.icons.folderOpen2,
---   treesitter              = EcoVim.icons.tree,
---   zsh                     = EcoVim.icons.terminal .. 'ZSH',
+--   npm                     = icons.terminal .. 'NPM',
+--   nvim_lsp                = icons.code .. 'LSP',
+--   nvim_lsp_signature_help = icons.func .. 'SIG',
+--   buffer                  = icons.buffer .. 'BUF',
+--   nvim_lua                = icons.bomb,
+--   luasnip                 = icons.snippet .. 'SNP',
+--   calc                    = icons.calculator,
+--   path                    = icons.folderOpen2,
+--   treesitter              = icons.tree,
+--   zsh                     = icons.terminal .. 'ZSH',
 -- }
 --
 -- local buffer_option = {
@@ -134,7 +192,7 @@ cmp.setup.cmdline(':', {
 --       i = cmp.mapping.abort(),
 --       c = cmp.mapping.close(),
 --     },
---     ['<CR>'] = cmp.mapping.confirm({ select = EcoVim.plugins.completion.select_first_on_enter }),
+--     ['<CR>'] = cmp.mapping.confirm({ select = plugins.completion.select_first_on_enter }),
 --     ["<Tab>"] = cmp.mapping(function(fallback)
 --       if cmp.visible() then
 --         cmp.select_next_item()

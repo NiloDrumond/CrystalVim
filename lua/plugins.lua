@@ -58,6 +58,7 @@ return require('packer').startup({
     -- LSP addons
     use { 'jose-elias-alvarez/typescript.nvim' }
     use { 'folke/lsp-trouble.nvim', config = "require('plugins.lsp.trouble')" }
+    use { 'onsails/lspkind-nvim' }
 
     -- CMP
     use { 'hrsh7th/nvim-cmp', event = 'InsertEnter', config = "require('plugins.lsp.cmp')" }
@@ -66,6 +67,7 @@ return require('packer').startup({
     use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }
     use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }
 
 
     -- Refactor

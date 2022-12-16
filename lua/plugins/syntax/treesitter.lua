@@ -1,5 +1,5 @@
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'lua', 'typescript', 'tsx', 'javascript', 'rust', 'toml', 'json' },
+  ensure_installed = { 'lua', 'typescript', 'tsx', 'javascript', 'rust', 'toml', 'json', 'help' },
   highlight = {
     enable = true,
   },
