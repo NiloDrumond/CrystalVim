@@ -54,6 +54,13 @@ return require('packer').startup({
     -- Movement
     use { 'gbprod/stay-in-place.nvim', config = function() require('stay-in-place').setup({}) end }
 
+    -- General
+    use { 'AndrewRadev/splitjoin.vim' }
+    use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }
+    use { 'numToStr/Comment.nvim', config = "require('plugins.comment')", after = "nvim-ts-context-commentstring" }
+    use { 'LudoPinelli/comment-box.nvim' }
+
+
     -- Git
     use { 'kdheepak/lazygit.nvim' }
     use { 'akinsho/git-conflict.nvim', tag = "*", config = "require('plugins.git.conflict')" }
