@@ -15,9 +15,12 @@ return require('packer').startup({
     -- Pre-requisites
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'nvim-lua/plenary.nvim' }
+    use { 'MunifTanjim/nui.nvim' }
 
     -- Glamour
     use { 'folke/tokyonight.nvim', config = "require('theme')" }
+    use { 'NvChad/nvim-colorizer.lua', config = "require('plugins.glamour.colorizer')" }
+    use { 'lukas-reineke/indent-blankline.nvim', config = "require('plugins.glamour.indent')" }
 
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')" }
@@ -34,6 +37,7 @@ return require('packer').startup({
     use { 'folke/which-key.nvim', config = "require('plugins.ui.which-key')", event = "BufWinEnter" }
     use { 'kyazdani42/nvim-tree.lua', config = "require('plugins.ui.tree')" }
     use { 'romgrk/barbar.nvim', wants = 'nvim-web-devicons', config = "require('plugins.ui.barbar')" }
+    use { 'stevearc/dressing.nvim', config = "require('plugins.ui.dressing')" }
 
     -- LSP Base
     use { 'williamboman/mason.nvim' }
@@ -42,6 +46,7 @@ return require('packer').startup({
 
     -- LSP addons
     use { 'jose-elias-alvarez/typescript.nvim' }
+    use { 'folke/lsp-trouble.nvim', config = "require('plugins.lsp.trouble')" }
 
     -- Refactor
     use { 'nvim-pack/nvim-spectre' }
@@ -57,6 +62,25 @@ return require('packer').startup({
       config = "require('plugins.git.signs')",
       event = "BufRead"
     }
+
+    -- Testing
+    -- use {
+    --   'rcarriga/neotest',
+    --   requires = {
+    --     'nvim-lua/plenary.nvim',
+    --     'nvim-treesitter/nvim-treesitter',
+    --     'antoinemadec/FixCursorHold.nvim',
+    --     'haydenmeade/neotest-jest'
+    --   },
+    --   config = "require('plugins.neotest')"
+    -- }
+
+
+    -- Debugger
+    -- use { 'mfussenegger/nvim-dap', config = "require('plugins.dap')" }
+    -- use { 'theHamsta/nvim-dap-virtual-text' }
+    -- use { 'rcarriga/nvim-dap-ui' }
+
 
     if packer_bootstrap then
       require('packer').sync()

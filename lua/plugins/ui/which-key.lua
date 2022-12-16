@@ -130,6 +130,17 @@ local normal_mode_mappings = {
     p = { '<cmd>BufferPick<CR>', 'Pick Buffer' },
   },
 
+  c = {
+    name = "LSP",
+    a = { 'code action' },
+    d = { '<cmd>TroubleToggle<CR>', 'local diagnostics' },
+    -- D = { '<cmd>Telescope diagnostics wrap_results=true<CR>', 'workspace diagnostics' },
+    f = { 'format' },
+    l = { 'line diagnostics' },
+    r = { 'rename' },
+    t = { '<cmd>LspToggleAutoFormat<CR>', 'toggle format on save' },
+  },
+
 
   g = {
     name = "Git",
