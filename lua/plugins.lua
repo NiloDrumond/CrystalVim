@@ -22,9 +22,10 @@ return require('packer').startup({
     use { 'folke/tokyonight.nvim', config = "require('theme')" }
     use { 'NvChad/nvim-colorizer.lua', config = "require('plugins.glamour.colorizer')" }
     use { 'lukas-reineke/indent-blankline.nvim', config = "require('plugins.glamour.indent')" }
+    use { 'danilamihailov/beacon.nvim' }
 
     -- Treesitter
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')" }
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.syntax.treesitter')" }
     use { 'windwp/nvim-ts-autotag', after = { 'nvim-treesitter' } }
     use { 'p00f/nvim-ts-rainbow', after = { 'nvim-treesitter' } }
     use { 'nvim-treesitter/playground', after = { 'nvim-treesitter' } }
@@ -33,6 +34,12 @@ return require('packer').startup({
     use { 'RRethy/nvim-treesitter-textsubjects', after = { 'nvim-treesitter' } }
     use { 'nvim-treesitter/nvim-treesitter-context', after = { 'nvim-treesitter' } }
     use { 'drybalka/tree-climber.nvim', after = { 'nvim-treesitter' } }
+
+    -- Syntax
+    use { 'windwp/nvim-autopairs', after = { 'nvim-treesitter', }, config = "require('plugins.syntax.autopairs')" }
+    use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }
+    use { 'numToStr/Comment.nvim', config = "require('plugins.syntax.comment')", after = "nvim-ts-context-commentstring" }
+    use { 'LudoPinelli/comment-box.nvim' }
 
     -- UI
     use { 'folke/which-key.nvim', config = "require('plugins.ui.which-key')", event = "BufWinEnter" }
@@ -48,7 +55,7 @@ return require('packer').startup({
 
     -- LSP addons
     use { 'jose-elias-alvarez/typescript.nvim' }
-    use { 'folke/lsp-trouble.nvim', config = "require('plugins.lsp.trouble')" }
+    use { 'folke/lsp-trouble.nvim', config = "require('lsp.trouble')" }
 
     -- Refactor
     use { 'nvim-pack/nvim-spectre' }
@@ -56,19 +63,20 @@ return require('packer').startup({
     -- Movement
     use { 'gbprod/stay-in-place.nvim', config = function() require('stay-in-place').setup({}) end }
     use { 'mg979/vim-visual-multi' }
+    use { 'karb94/neoscroll.nvim', config = "require('plugins.movement.neoscroll')" }
 
     -- General
     use { 'AndrewRadev/splitjoin.vim' }
-    use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }
-    use { 'numToStr/Comment.nvim', config = "require('plugins.comment')", after = "nvim-ts-context-commentstring" }
-    use { 'LudoPinelli/comment-box.nvim' }
     use { 'kylechui/nvim-surround', config = function() require("nvim-surround").setup({}) end }
     -- NOTE: table may be useful someday
     -- use { 'dhruvasagar/vim-table-mode' }
     use { 'nacro90/numb.nvim', config = "require('plugins.numb')" }
     use { 'folke/todo-comments.nvim', config = "require('plugins.todo-comments')" }
-    use { 'folke/zen-mode.nvim', config = "require('plugins.zen')" }
-    use { 'folke/twilight.nvim', config = "require('plugins.twilight')" }
+    use { 'folke/zen-mode.nvim', config = "require('plugins.glamour.zen')" }
+    use { 'folke/twilight.nvim', config = "require('plugins.glamour.twilight')" }
+    use { 'mbbill/undotree' }
+    use { 'tpope/vim-abolish' }
+    use { 'airblade/vim-rooter', config = "require('plugins.rooter')" }
 
 
     -- Git
@@ -80,7 +88,7 @@ return require('packer').startup({
       event = "BufRead"
     }
 
-    -- Testing
+    -- TODO: Testing
     -- use {
     --   'rcarriga/neotest',
     --   requires = {
@@ -93,7 +101,7 @@ return require('packer').startup({
     -- }
 
 
-    -- Debugger
+    -- TODO: Debugger
     -- use { 'mfussenegger/nvim-dap', config = "require('plugins.dap')" }
     -- use { 'theHamsta/nvim-dap-virtual-text' }
     -- use { 'rcarriga/nvim-dap-ui' }

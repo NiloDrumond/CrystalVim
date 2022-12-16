@@ -179,6 +179,8 @@ local normal_mode_mappings = {
     -- s = { '<cmd>lua require("plugins.git.diffview").toggle_status()<CR>', 'status' },
   },
 
+  u = { '<cmd>UndotreeToggle<CR>', 'undo tree' },
+
   [" "] = { '<cmd>:lua vim.lsp.buf.format()<CR>', 'format' },
 }
 
