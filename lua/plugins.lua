@@ -90,6 +90,7 @@ return require('packer').startup({
     use { 'mbbill/undotree' }
     use { 'tpope/vim-abolish' }
     use { 'airblade/vim-rooter', config = "require('plugins.rooter')" }
+    use { 'gpanders/editorconfig.nvim' }
 
 
     -- Git
