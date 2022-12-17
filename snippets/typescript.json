@@ -1,0 +1,26 @@
+{
+  "Constructor": {
+    "prefix": "ctor",
+    "body": [
+      "/**",
+      " *",
+      " */",
+      "constructor() {",
+      "\tsuper();",
+      "\t$0",
+      "}"
+    ],
+    "description": "Constructor"
+  },
+  "Class Definition": {
+    "prefix": "class",
+    "body": [
+      "class ${1:name} {",
+      "\tconstructor(${2:parameters}) {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "Class Definition"
+  }
+}

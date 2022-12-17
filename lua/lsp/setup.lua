@@ -53,6 +53,13 @@ lspconfig.sumneko_lua.setup {
   settings = require('lsp.servers.sumneko_lua').settings
 }
 
+lspconfig.jsonls.setup {
+  capabilities = capabilities,
+  handlers = handlers,
+  on_attach = on_attach,
+  settings = require('lsp.servers.jsonls').settings,
+}
+
 for _, server in ipairs { "html" } do
   lspconfig[server].setup {
     handlers = handlers,

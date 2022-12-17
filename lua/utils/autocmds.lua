@@ -8,13 +8,24 @@ vim.api.nvim_create_autocmd("BufNewFile", { pattern = "*/node_modules/*", comman
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.txt", "*.md", "*.tex" },
   command = "setlocal spell" })
 
+-- 2 tabs 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.lua", "*.ts", "*.tsx", ".js", ".jsx" },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+    end })
+-- 4 tabs 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.cargo", "*.toml" },
+  command = "setlocal spell" })
+
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ WhickKey Attach                                          │
 --  ╰──────────────────────────────────────────────────────────╯
 
 local present, _ = pcall(require, "which-key")
 if not present then return end
-local _, pwk = pcall(require, "plugins.ui.which-key")
+local _, pwk = pcall(require, "plugins.which-key")
 
 -- Spectre
 vim.api.nvim_create_autocmd("FileType", { pattern = "spectre_panel",
