@@ -8,7 +8,10 @@ vim.api.nvim_create_autocmd("BufNewFile", { pattern = "*/node_modules/*", comman
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.txt", "*.md", "*.tex" },
   command = "setlocal spell" })
 
--- Attach specific keybindings in which-key for specific filetypes
+--  ╭──────────────────────────────────────────────────────────╮
+--  │ WhickKey Attach                                          │
+--  ╰──────────────────────────────────────────────────────────╯
+
 local present, _ = pcall(require, "which-key")
 if not present then return end
 local _, pwk = pcall(require, "plugins.ui.which-key")
@@ -16,7 +19,6 @@ local _, pwk = pcall(require, "plugins.ui.which-key")
 -- Spectre
 vim.api.nvim_create_autocmd("FileType", { pattern = "spectre_panel",
   callback = function() pwk.attach_spectre(0) end })
-
 -- Zen
 vim.api.nvim_create_autocmd("FileType",
   { pattern = "*",
@@ -26,3 +28,6 @@ vim.api.nvim_create_autocmd("FileType",
       end
     end
   })
+-- NPM
+vim.api.nvim_create_autocmd("BufEnter", { pattern = { "package.json" },
+  callback = function() pwk.attach_npm(0) end })

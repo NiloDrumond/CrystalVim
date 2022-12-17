@@ -42,6 +42,7 @@ return require('packer').startup({
     use { 'numToStr/Comment.nvim', config = "require('plugins.syntax.comment')", after = "nvim-ts-context-commentstring" }
     use { 'LudoPinelli/comment-box.nvim' }
     use { 'L3MON4D3/LuaSnip', requires = { 'rafamadriz/friendly-snippets' }, after = 'cmp_luasnip' }
+    use { 'axelvc/template-string.nvim', config = "require('plugins.syntax.template-string')", after = 'nvim-treesitter' }
 
     -- UI
     use { 'folke/which-key.nvim', config = "require('plugins.ui.which-key')", event = "BufWinEnter" }
@@ -56,6 +57,8 @@ return require('packer').startup({
       config = "require('plugins.ui.lualine')",
       event = "BufWinEnter"
     }
+    -- TODO: RUST
+    -- use { "preservim/tagbar", config = "require('plugins.tagbar')" }
 
     -- LSP Base
     use { 'williamboman/mason.nvim', config = "require('plugins.lsp.mason')" }
@@ -67,15 +70,21 @@ return require('packer').startup({
     use { 'folke/lsp-trouble.nvim', config = "require('plugins.lsp.trouble')" }
     use { 'onsails/lspkind-nvim' }
     use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig", config = "require('plugins.lsp.navic')" }
+    use { 'vuki656/package-info.nvim', event = "BufEnter package.json", config = "require('plugins.lsp.package-info')" }
+    -- TODO: RUST
+    -- use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust-tools')", requires = { 'neovim/nvim-lspconfig' } }
+    -- use { 'lvimuser/lsp-inlayhints.nvim', config = function() require('lsp-inlayhints').setup() end }
 
     -- CMP
-    use { 'hrsh7th/nvim-cmp', event = 'InsertEnter', config = "require('plugins.lsp.cmp')" }
+    use { 'hrsh7th/nvim-cmp', event = 'BufEnter', config = "require('plugins.lsp.cmp')" }
     use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }
     use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-calc', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' }
 
     -- Movement
     use { 'gbprod/stay-in-place.nvim', config = function() require('stay-in-place').setup({}) end }

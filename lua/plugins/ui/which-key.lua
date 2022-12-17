@@ -179,6 +179,17 @@ local normal_mode_mappings = {
     -- s = { '<cmd>lua require("plugins.git.diffview").toggle_status()<CR>', 'status' },
   },
 
+  p = {
+    name = "Project",
+    -- f = { 'file' },
+    -- w = { 'word' },
+    -- l = { "<cmd>lua require'telescope'.extensions.repo.cached_list{file_ignore_patterns={'/%.cache/', '/%.cargo/', '/%.local/', '/%timeshift/', '/usr/', '/srv/', '/%.oh%-my%-zsh', '/Library/', '/%.cocoapods/'}}<CR>",
+    --   'list' },
+    r = { 'refactor' },
+    -- s = { "<cmd>SessionManager save_current_session<CR>", 'save session' },
+    t = { "<cmd>TodoTrouble<CR>", 'todo' },
+  },
+
   u = { '<cmd>UndotreeToggle<CR>', 'undo tree' },
 
   [" "] = { '<cmd>:lua vim.lsp.buf.format()<CR>', 'format' },
@@ -261,7 +272,28 @@ local function attach_zen(bufnr)
   })
 end
 
+local function attach_npm(bufnr)
+  wk.register({
+    n = {
+      name = "NPM",
+      c = { '<cmd>lua require("package-info").change_version()<CR>', 'change version' },
+      d = { '<cmd>lua require("package-info").delete()<CR>', 'delete package' },
+      i = { '<cmd>lua require("package-info").install()<CR>', 'install new package' },
+      t = { '<cmd>lua require("package-info").toggle()<CR>', 'toggle' },
+      u = { '<cmd>lua require("package-info").update()<CR>', 'update package' },
+    }
+  }, {
+    buffer = bufnr,
+    mode = "n", -- NORMAL mode
+    prefix = "<leader>",
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false, -- use `nowait` when creating keymaps
+  })
+end
+
 return {
   attach_spectre = attach_spectre,
   attach_zen = attach_zen,
+  attach_npm = attach_npm
 }

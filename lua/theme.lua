@@ -46,8 +46,11 @@ require('tokyonight').setup({
       fg = c.orange
     }
 
-    hl["@keyword"] = {fg = c.purple }
-    hl["@function.macro"] = { fg = c.red}
+    hl["@keyword"] = { fg = c.purple }
+    hl["@function.macro"] = { fg = c.red }
+
+    hl.PackageInfoOutdatedVersion = { fg = c.red1, }
+    hl.PackageInfoUptodateVersion = { fg = c.green1, }
 
   end,
 })
