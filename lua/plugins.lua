@@ -85,6 +85,7 @@ return require('packer').startup({
     use { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-calc', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' }
+    use { 'David-Kunz/cmp-npm', after = { 'nvim-cmp', 'plenary.nvim' }, config = "require('plugins.lsp.cmp-npm')" }
 
     -- Movement
     use { 'gbprod/stay-in-place.nvim', config = function() require('stay-in-place').setup({}) end }
