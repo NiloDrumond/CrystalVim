@@ -49,6 +49,13 @@ return require('packer').startup({
     use { 'romgrk/barbar.nvim', wants = 'nvim-web-devicons', config = "require('plugins.ui.barbar')" }
     use { 'stevearc/dressing.nvim', config = "require('plugins.ui.dressing')" }
     use { 'akinsho/nvim-toggleterm.lua', tag = '*', config = "require('plugins.ui.toggleterm')" }
+    use { 'nvim-pack/nvim-spectre' }
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      config = "require('plugins.ui.lualine')",
+      event = "BufWinEnter"
+    }
 
     -- LSP Base
     use { 'williamboman/mason.nvim', config = "require('plugins.lsp.mason')" }
@@ -59,6 +66,7 @@ return require('packer').startup({
     use { 'jose-elias-alvarez/typescript.nvim' }
     use { 'folke/lsp-trouble.nvim', config = "require('plugins.lsp.trouble')" }
     use { 'onsails/lspkind-nvim' }
+    use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig", config = "require('plugins.lsp.navic')" }
 
     -- CMP
     use { 'hrsh7th/nvim-cmp', event = 'InsertEnter', config = "require('plugins.lsp.cmp')" }
@@ -68,10 +76,6 @@ return require('packer').startup({
     use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }
     use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }
-
-
-    -- Refactor
-    use { 'nvim-pack/nvim-spectre' }
 
     -- Movement
     use { 'gbprod/stay-in-place.nvim', config = function() require('stay-in-place').setup({}) end }
