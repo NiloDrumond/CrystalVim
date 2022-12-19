@@ -3,7 +3,7 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
     custom_captures = {
-      ["@error"] = "HIGHPRIORITY"
+      ["@error"] = "Error"
     }
   },
 

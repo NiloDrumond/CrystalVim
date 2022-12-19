@@ -10,23 +10,21 @@ keymap("n", "<C-h>", "<C-w>h", silent)
 keymap("n", "<C-j>", "<C-w>j", silent)
 keymap("n", "<C-k>", "<C-w>k", silent)
 keymap("n", "<C-l>", "<C-w>l", silent)
+keymap("n", "<C-c>", "<C-w>c", silent)
 
 -- H to move to the first non-blank character of the line
 -- keymap("n", "H", "^", silent)
 
 -- Move selected line / block of text in visual mode
-keymap("x", "K", ":move '<-2<CR>gv-gv", silent)
-keymap("x", "J", ":move '>+1<CR>gv-gv", silent)
+keymap("x", "<S-k>", ":move '<-2<CR>gv-gv", silent)
+keymap("x", "<S-j>", ":move '>+1<CR>gv-gv", silent)
 
 -- Navigation around the syntax-tree
-keymap({ 'n', 'v', 'o' }, 'H', "<cmd>lua require('tree-climber').goto_parent()<CR>", silent)
-keymap({ 'n', 'v', 'o' }, 'L', "<cmd>lua require('tree-climber').goto_child()<CR>", silent)
-keymap({ 'n', 'v', 'o' }, 'J', "<cmd>lua require('tree-climber').goto_next()<CR>", silent)
-keymap({ 'n', 'v', 'o' }, 'K', "<cmd>lua require('tree-climber').goto_prev()<CR>", silent)
-keymap({ 'v', 'o' }, 'in', "<cmd>lua require('tree-climber').select_node()<CR>", silent)
-keymap('n', '<C-k>', "<cmd>lua require('tree-climber').swap_prev()<CR>", silent)
-keymap('n', '<C-j>', "<cmd>lua require('tree-climber').swap_next()<CR>", silent)
-keymap('n', '<C-r>', "<cmd>lua require('tree-climber').highlight_node()<CR>", silent)
+keymap({ "n", "v", "o" }, 'Z', "<cmd>lua require('tree-climber').goto_parent()<CR>", silent)
+keymap({ "n", "v", "o" }, 'X', "<cmd>lua require('tree-climber').goto_child()<CR>", silent)
+keymap({ "n", "v", "o" }, 'L', "<cmd>lua require('tree-climber').goto_next()<CR>", silent)
+keymap({ "n", "v", "o" }, 'H', "<cmd>lua require('tree-climber').goto_prev()<CR>", silent)
+keymap({ 'v', 'o' }, 'M', "<cmd>lua require('tree-climber').select_node()<CR>", silent)
 
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Editing                                                  │
@@ -52,7 +50,13 @@ keymap("i", "<C-s>", "<ESC> :w<CR>", silent)
 keymap("i", "<C-p>", "<C-r>+", silent)
 
 -- Remove highlights
-keymap("n", "<BS>", ":noh<CR>", silent)
+keymap("n", "<BS>", function()
+  vim.cmd("noh")
+  local ok, hlslens = pcall(require, "hlslens")
+  if ok then
+    hlslens.stop()
+  end
+end, silent)
 
 -- Insert Line with Enter
 keymap("n", "<Enter>", ":call append(line('.'), '')<CR>", silent)
@@ -124,9 +128,9 @@ keymap("n", "<A-9>", ":BufferGoto 9<CR>", silent)
 
 -- Don't yank on delete char
 keymap("n", "x", '"_x', silent)
-keymap("n", "X", '"_X', silent)
+-- keymap("n", "X", '"_X', silent)
 keymap("v", "x", '"_x', silent)
-keymap("v", "X", '"_X', silent)
+-- keymap("v", "X", '"_X', silent)
 
 -- Don't yank on visual paste
 keymap("v", "p", '"_dP', silent)
