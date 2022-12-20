@@ -143,6 +143,7 @@ local normal_mode_mappings = {
     l = { 'line diagnostics' },
     r = { 'rename' },
     t = { '<cmd>LspToggleAutoFormat<CR>', 'toggle format on save' },
+    i = { "TypescriptAddMissingImports", 'add missing imports' }
   },
 
 

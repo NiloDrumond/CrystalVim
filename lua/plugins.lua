@@ -98,6 +98,7 @@ return require('packer').startup({
     use { 'gbprod/stay-in-place.nvim', config = function() require('stay-in-place').setup({}) end }
     use { 'mg979/vim-visual-multi', config = "require('plugins.vim-visual-multi')" }
     use { 'karb94/neoscroll.nvim', config = "require('plugins.movement.neoscroll')" }
+    use { 'ggandor/leap.nvim', config = "require('plugins.movement.leap')", requires = { 'tpope/vim-repeat' } }
 
     -- General
     use { 'AndrewRadev/splitjoin.vim' }
@@ -112,6 +113,7 @@ return require('packer').startup({
     use { 'tpope/vim-abolish' }
     use { 'airblade/vim-rooter', config = "require('plugins.rooter')" }
     use { 'gpanders/editorconfig.nvim' }
+    use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
 
 
     -- Git

@@ -50,7 +50,7 @@ local keymappings = {
   { key = "q", action = "close" },
   { key = "g?", action = "toggle_help" },
   { key = "W", action = "collapse_all" },
-  { key = "S", action = "search_node" }
+  -- { key = "S", action = "search_node" }
 }
 
 require 'nvim-tree'.setup {

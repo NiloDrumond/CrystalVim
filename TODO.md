@@ -1,12 +1,13 @@
 # TODO
 - [x] Stop Visual mode on CR
 - [x] Telescope
-- [ ] Superlightspeed
+- [x] Leap
 - [ ] Dashboard
 - [ ] Hop (possibly)
 - [ ] Rust env
 - [ ] Session Manager
 - [ ] Diffview
+- [ ] Telescope through modified git files
 - [x] Notifications for Nvim-Tree
 
 # Improvements
