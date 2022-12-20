@@ -61,7 +61,7 @@ return require('packer').startup({
     }
     use { 'petertriho/nvim-scrollbar', config = "require('plugins.ui.scrollbar')" }
     use { 'kevinhwang91/nvim-hlslens', config = "require('plugins.ui.hlslens')", after = { 'nvim-scrollbar' } }
-    use { 'rcarriga/nvim-notify', config = "require('plugins.notify')" }
+    use { 'rcarriga/nvim-notify', config = "require('plugins.ui.notify')" }
     -- TODO: RUST
     -- use { "preservim/tagbar", config = "require('plugins.tagbar')" }
 
@@ -122,6 +122,18 @@ return require('packer').startup({
       config = "require('plugins.git.signs')",
       event = "BufRead"
     }
+
+    -- Telescope
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { 'cljoly/telescope-repo.nvim' }
+    use { 'nvim-telescope/telescope.nvim',
+      config = "require('plugins.telescope')",
+      after = { "telescope-fzf-native.nvim" },
+      requires = {
+        { 'nvim-lua/plenary.nvim' },
+      }
+    }
+
 
     -- TODO: Testing
     -- use {

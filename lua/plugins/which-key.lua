@@ -109,8 +109,10 @@ local normal_mode_mappings = {
     name = "CrystalVim",
     i = { '<cmd>PackerInstall<CR>', 'install plugins' },
     c = { '<cmd>e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<CR>', 'open config' },
-    d = { '<cmd>e ~/.config/.zshrc<CR>', 'open dotfiles'},
+    d = { '<cmd>e ~/.config/.zshrc<CR>', 'open dotfiles' },
     u = { '<cmd>PackerSync<CR>', 'update plugins' },
+    s = { '<cmd>lua require("plugins.telescope.pickers.edit_nvim")()<CR>', 'search config' },
+    q = { '<cmd>qa<CR>', 'quit' }
   },
 
   a = {
@@ -136,7 +138,7 @@ local normal_mode_mappings = {
     name = "LSP",
     a = { 'code action' },
     d = { '<cmd>TroubleToggle<CR>', 'local diagnostics' },
-    -- D = { '<cmd>Telescope diagnostics wrap_results=true<CR>', 'workspace diagnostics' },
+    D = { '<cmd>Telescope diagnostics wrap_results=true<CR>', 'workspace diagnostics' },
     f = { 'format' },
     l = { 'line diagnostics' },
     r = { 'rename' },
@@ -147,7 +149,7 @@ local normal_mode_mappings = {
   g = {
     name = "Git",
     b = { "blame line" },
-    -- B = { '<cmd>Telescope git_branches<CR>', 'branches' },
+    B = { '<cmd>Telescope git_branches<CR>', 'branches' },
     c = {
       name = 'Conflict',
       b = { '<cmd>GitConflictChooseBoth<CR>', 'choose both' },
@@ -158,7 +160,7 @@ local normal_mode_mappings = {
       r = { '<cmd>GitConflictRefresh<CR>', 'refresh' }
     },
     -- d = { '<cmd>lua require("plugins.git.diffview").toggle_file_history()<CR>', 'diff file' },
-    -- f = { '<cmd>Telescope git_files<CR>', 'git files' },
+    f = { '<cmd>Telescope git_files<CR>', 'git files' },
     g = { '<cmd>LazyGit<CR>', 'lazygit' },
     h = {
       name = "Hunk",
@@ -173,9 +175,10 @@ local normal_mode_mappings = {
     },
     l = {
       name = "Log",
-      -- A = { "<cmd>lua require('plugins.telescope').my_git_commits()<CR>", "commits (Telescope)" },
+      A = { "<cmd>lua require('plugins.telescope.pickers.git-commits').my_git_commits()<CR>", "commits (Telescope)" },
       a = { "<cmd>LazyGitFilter<CR>", "commits" },
-      -- C = { "<cmd>lua require('plugins.telescope').my_git_bcommits()<CR>", "buffer commits (Telescope)" },
+      C = { "<cmd>lua require('plugins.telescope.pickers.git-commits').my_git_bcommits()<CR>",
+        "buffer commits (Telescope)" },
       c = { "<cmd>LazyGitFilterCurrentFile<CR>", "buffer commits" },
     },
     -- s = { '<cmd>lua require("plugins.git.diffview").toggle_status()<CR>', 'status' },
@@ -183,13 +186,24 @@ local normal_mode_mappings = {
 
   p = {
     name = "Project",
-    -- f = { 'file' },
-    -- w = { 'word' },
+    f = { "<CMD>lua require('plugins.telescope.pickers.project_files')({ default_text = vim.fn.expand('<cword>'), initial_mode = 'normal' })<CR>",
+      'file' },
+    w = { "<CMD>lua require('telescope.builtin').grep_string({ initial_mode = 'normal' })<CR>", 'word' },
     -- l = { "<cmd>lua require'telescope'.extensions.repo.cached_list{file_ignore_patterns={'/%.cache/', '/%.cargo/', '/%.local/', '/%timeshift/', '/usr/', '/srv/', '/%.oh%-my%-zsh', '/Library/', '/%.cocoapods/'}}<CR>",
     --   'list' },
     r = { 'refactor' },
     -- s = { "<cmd>SessionManager save_current_session<CR>", 'save session' },
     t = { "<cmd>TodoTrouble<CR>", 'todo' },
+  },
+
+  s = {
+    name = "Search",
+    a = { '<cmd>lua require"telescope.builtin".find_files({ hidden = true })<CR>', 'all files' },
+    c = { '<cmd>Telescope colorscheme<CR>', 'color schemes' },
+    h = { '<cmd>Telescope oldfiles hidden=true<CR>', 'file history' },
+    H = { '<cmd>lua require("plugins.telescope.pickers.command_history")()<CR>', 'command history' },
+    s = { '<cmd>Telescope search_history theme=dropdown<CR>', 'search history' },
+    f = { '<cmd>lua require("plugins.telescope.pickers.live_grep_in_folder")()<CR>', 'inside folder' }
   },
 
   u = { '<cmd>UndotreeToggle<CR>', 'undo tree' },

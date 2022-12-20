@@ -85,14 +85,8 @@ keymap("n", "<leader>e", "<cmd>lua require'nvim-tree'.toggle()<CR>", silent)
 --  ╰──────────────────────────────────────────────────────────╯
 
 -- Telescope
-keymap("n", "<C-p>", "<CMD>Telescope fd<CR>")
-keymap("n", "<S-p>", "<CMD>lua require('plugins.telescope.pickers.multi-rg')()<CR>")
-
-
--- Find file/word across project
-keymap("n", "<Leader>pf",
-  "<CMD>lua require('plugins.telescope').project_files({ default_text = vim.fn.expand('<cword>'), initial_mode = 'normal' })<CR>")
-keymap("n", "<Leader>pw", "<CMD>lua require('telescope.builtin').grep_string({ initial_mode = 'normal' })<CR>")
+keymap("n", "<C-p>", "<CMD>lua require('telescope.builtin').find_files()<CR>")
+keymap("n", "<S-p>", "<CMD>Telescope live_grep<CR>")
 
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Buffers                                                  │
