@@ -36,25 +36,25 @@ require('nvim-treesitter.configs').setup {
         ["]]"] = "@block.inner",
         ["]f"] = "@function.outer",
         ["]m"] = "@class.outer",
-        ["<C-Down>"] = "@parameter.inner"
+        ["<S-Down>"] = "@parameter.inner"
       },
       goto_next_end = {
         ["]["] = "@block.inner",
         ["]F"] = "@function.outer",
         ["]M"] = "@class.outer",
-        ["<C-Up>"] = "@parameter.inner"
+        ["<S-Up>"] = "@parameter.inner"
       },
       goto_previous_start = {
         ["[["] = "@block.inner",
         ["[f"] = "@function.outer",
         ["[m"] = "@class.outer",
-        ["<C-Right>"] = "@parameter.inner"
+        ["<S-Right>"] = "@parameter.inner"
       },
       goto_previous_end = {
         ["[]"] = "@block.inner",
         ["[F"] = "@function.outer",
         ["[M"] = "@class.outer",
-        ["<C-Left>"] = "@parameter.inner"
+        ["<S-Left>"] = "@parameter.inner"
       },
     },
     select = {

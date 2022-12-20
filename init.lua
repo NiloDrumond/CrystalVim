@@ -8,5 +8,6 @@ vim.g.loaded_netrwPlugin = 1
 require('internal.packer_commands')
 require('settings')
 require('lsp.setup')
+require('lsp.functions')
 require('mappings')
 require('utils.autocmds')

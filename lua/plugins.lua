@@ -61,6 +61,7 @@ return require('packer').startup({
     }
     use { 'petertriho/nvim-scrollbar', config = "require('plugins.ui.scrollbar')" }
     use { 'kevinhwang91/nvim-hlslens', config = "require('plugins.ui.hlslens')", after = { 'nvim-scrollbar' } }
+    use { 'rcarriga/nvim-notify', config = "require('plugins.ui.notify')" }
     -- TODO: RUST
     -- use { "preservim/tagbar", config = "require('plugins.tagbar')" }
 
@@ -78,6 +79,7 @@ return require('packer').startup({
       config = "require('plugins.lsp.package-info')" }
     -- TODO: RUST
     -- use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust-tools')", requires = { 'neovim/nvim-lspconfig' } }
+    -- https://github.com/Saecki/crates.nvim
     -- use { 'lvimuser/lsp-inlayhints.nvim', config = function() require('lsp-inlayhints').setup() end }
 
     -- CMP
@@ -94,7 +96,7 @@ return require('packer').startup({
 
     -- Movement
     use { 'gbprod/stay-in-place.nvim', config = function() require('stay-in-place').setup({}) end }
-    use { 'mg979/vim-visual-multi' }
+    use { 'mg979/vim-visual-multi', config = "require('plugins.vim-visual-multi')" }
     use { 'karb94/neoscroll.nvim', config = "require('plugins.movement.neoscroll')" }
 
     -- General
