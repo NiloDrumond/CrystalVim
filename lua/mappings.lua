@@ -52,6 +52,7 @@ keymap("i", "<C-p>", "<C-r>+", silent)
 -- Remove highlights
 keymap("n", "<BS>", function()
   vim.cmd("noh")
+  vim.api.nvim_input("<ESC>")
   local ok, hlslens = pcall(require, "hlslens")
   if ok then
     hlslens.stop()

@@ -61,7 +61,7 @@ return require('packer').startup({
     }
     use { 'petertriho/nvim-scrollbar', config = "require('plugins.ui.scrollbar')" }
     use { 'kevinhwang91/nvim-hlslens', config = "require('plugins.ui.hlslens')", after = { 'nvim-scrollbar' } }
-    use { 'rcarriga/nvim-notify', config = "require('plugins.ui.notify')" }
+    use { 'rcarriga/nvim-notify', config = "require('plugins.notify')" }
     -- TODO: RUST
     -- use { "preservim/tagbar", config = "require('plugins.tagbar')" }
 
