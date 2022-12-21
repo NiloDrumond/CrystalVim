@@ -13,6 +13,7 @@ return require('packer').startup({
     use 'wbthomason/packer.nvim'
 
     -- Pre-requisites
+    use_rocks 'jsregexp'
     use { 'lewis6991/impatient.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'nvim-lua/plenary.nvim' }
@@ -42,7 +43,8 @@ return require('packer').startup({
     use { 'numToStr/Comment.nvim', config = "require('plugins.syntax.comment')",
       after = "nvim-ts-context-commentstring" }
     use { 'LudoPinelli/comment-box.nvim' }
-    use { 'L3MON4D3/LuaSnip', after = 'cmp_luasnip', config = "require('plugins.syntax.luasnip')" }
+    use { 'L3MON4D3/LuaSnip', after = 'cmp_luasnip', config = "require('plugins.syntax.luasnip')",
+      run = "make install_jsregexp" }
     use { 'axelvc/template-string.nvim', config = "require('plugins.syntax.template-string')",
       after = 'nvim-treesitter' }
 
@@ -62,6 +64,7 @@ return require('packer').startup({
     use { 'petertriho/nvim-scrollbar', config = "require('plugins.ui.scrollbar')" }
     use { 'kevinhwang91/nvim-hlslens', config = "require('plugins.ui.hlslens')", after = { 'nvim-scrollbar' } }
     use { 'rcarriga/nvim-notify', config = "require('plugins.ui.notify')" }
+    use { 'goolord/alpha-nvim', config = "require('plugins.ui.alpha')" }
     -- TODO: RUST
     -- use { "preservim/tagbar", config = "require('plugins.tagbar')" }
 
@@ -115,6 +118,7 @@ return require('packer').startup({
     use { 'airblade/vim-rooter', config = "require('plugins.rooter')" }
     use { 'gpanders/editorconfig.nvim' }
     use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
+    use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
 
     -- Git

@@ -143,7 +143,7 @@ local normal_mode_mappings = {
     l = { 'line diagnostics' },
     r = { 'rename' },
     t = { '<cmd>LspToggleAutoFormat<CR>', 'toggle format on save' },
-    i = { "TypescriptAddMissingImports", 'add missing imports' }
+    i = { "<cmd>TypescriptAddMissingImports<CR>", 'add missing imports' }
   },
 
 
@@ -204,7 +204,8 @@ local normal_mode_mappings = {
     h = { '<cmd>Telescope oldfiles hidden=true<CR>', 'file history' },
     H = { '<cmd>lua require("plugins.telescope.pickers.command_history")()<CR>', 'command history' },
     s = { '<cmd>Telescope search_history theme=dropdown<CR>', 'search history' },
-    f = { '<cmd>lua require("plugins.telescope.pickers.live_grep_in_folder")()<CR>', 'inside folder' }
+    f = { '<cmd>lua require("plugins.telescope.pickers.live_grep_in_folder")()<CR>', 'inside folder' },
+    n = { "<cmd>Snip<CR>", 'snippets' }
   },
 
   u = { '<cmd>UndotreeToggle<CR>', 'undo tree' },

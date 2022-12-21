@@ -1,16 +1,43 @@
-local navic = require("nvim-navic")
+local M = {}
 
-local function on_attach(client, bufnr)
-  if client.server_capabilities.documentSymbolProvider then
-    navic.attach(client, bufnr)
-  end
-end
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require("typescript").setup({
-  go_to_source_definition = {
-    fallback = true, -- fall back to standard LSP definition on failure
-  },
-  server = {
-    on_attach = on_attach
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
   }
-})
+}
+capabilities.textDocument.codeAction = {
+  dynamicRegistration = false,
+  codeActionLiteralSupport = {
+    codeActionKind = {
+      valueSet = {
+        "",
+        "quickfix",
+        "refactor",
+        "refactor.extract",
+        "refactor.inline",
+        "refactor.rewrite",
+        "source",
+        "source.organizeImports",
+      },
+    },
+  },
+}
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true
+}
+
+M.capabilities = capabilities;
+
+return M

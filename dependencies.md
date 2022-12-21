@@ -8,3 +8,4 @@
 # Telescope
 - ripgrep
 - [fd](https://github.com/sharkdp/fd)
+

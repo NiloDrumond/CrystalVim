@@ -3,6 +3,23 @@ local luasnip = require('luasnip')
 local icons = require('icons')
 local lspkind = require('lspkind')
 
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ Utils                                                    │
+-- ╰──────────────────────────────────────────────────────────╯
+local types = require("cmp.types")
+
+local function deprioritize_text(entry1, entry2)
+  print(entry1:get_kind())
+  if entry1:get_kind() == types.lsp.CompletionItemKind.Text then return false end
+  if entry2:get_kind() == types.lsp.CompletionItemKind.Text then return true end
+  -- if entry1:get_kind() == types.lsp.CompletionItemKind.Snippet then return false end
+  -- if entry2:get_kind() == types.lsp.CompletionItemKind.Snippet then return true end
+end
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ Setup                                                    │
+-- ╰──────────────────────────────────────────────────────────╯
+
 local buffer_option = {
   -- Complete from all visible buffers (splits)
   get_bufnrs = function()
@@ -37,7 +54,7 @@ local source_mapping = {
 cmp.setup({
   snippet = {
     expand = function(args)
-      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
 
@@ -99,21 +116,28 @@ cmp.setup({
   }),
 
   sources = cmp.config.sources({
-    { name = 'luasnip', max_item_count = 6 },
-    { name = 'nvim_lsp' },
-    { name = 'npm', keyword_length = 4 },
-    { name = 'nvim_lsp_signature_help' },
-    { name = 'buffer', keyword_length = 5, option = buffer_option, max_item_count = 8 },
-    { name = 'nvim_lua' },
-    { name = 'path' },
-    { name = 'calc' }
+    { name = 'npm', priority = 9, keyword_length = 4 },
+    { name = 'nvim_lsp', priority = 9 },
+    { name = 'luasnip', priority = 8, max_item_count = 6 },
+    { name = 'nvim_lsp_signature_help', priority = 8 },
+    { name = 'buffer', priority = 6, keyword_length = 5, option = buffer_option, max_item_count = 8 },
+    { name = 'nvim_lua', priority = 5 },
+    { name = "spell", keyword_length = 3, priority = 4, keyword_pattern = [[\w\+]] },
+    --{ name = "fuzzy_path", priority = 4 }, -- from tzacher
+    { name = 'path', priority = 3 },
+    { name = 'calc', priority = 2 }
   }),
 
   sorting = {
+    priority_weight = 1,
     comparators = {
+      cmp.config.compare.exact,
+      cmp.config.compare.locality,
       cmp.config.compare.recently_used,
+      cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+      cmp.config.compare.offset,
       cmp.config.compare.order,
-      cmp.config.compare.score,
+      -- deprioritize_text,
     }
   },
 

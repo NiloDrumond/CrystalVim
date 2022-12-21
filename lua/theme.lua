@@ -55,9 +55,24 @@ require('tokyonight').setup({
       fg = c.orange
     }
 
+    -- Alpha
+    hl.CrystalHeader = {
+      fg = crystal.primary
+    }
+    hl.CrystalHeaderInfo = {
+      fg = crystal.secondary
+    }
+    hl.CrystalFooter = {
+      fg = crystal.secondary
+    }
+
+    hl.CursorLineNr = {
+      fg = crystal.primary
+    }
+
     hl["@keyword"] = { fg = c.purple }
     hl["@function.macro"] = { fg = c.red }
-    hl["@error.json"] = { bg = c.red }
+    hl["@error.json"] = { underline = true }
 
     hl.VM_Extend = { bg = c.bg_search }
     hl.VM_Cursor = { bg = c.bg_search, underline = true }

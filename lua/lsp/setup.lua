@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local ufo_config = require('plugins.nvim-ufo')
 
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Common                                                   │
@@ -66,3 +67,8 @@ for _, server in ipairs { "html" } do
     capabilities = capabilities
   }
 end
+
+require('ufo').setup({
+  fold_virt_text_handler = ufo_config.handler,
+  close_fold_kinds = { "imports" }
+})
