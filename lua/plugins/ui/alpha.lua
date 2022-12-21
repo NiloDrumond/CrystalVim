@@ -9,7 +9,7 @@ local dashboard = require("alpha.themes.dashboard")
 -- │ Header                                                   │
 -- ╰──────────────────────────────────────────────────────────╯
 
-local header = {
+local header_luavim = {
   "",
   "",
   "█   █ █ ▄▀█ █ █ █ █▀▄▀█ ",
@@ -19,8 +19,41 @@ local header = {
   "  P I N K   N I G H T",
 }
 
+local header_small = {
+  "",
+  "",
+  "▄▀▀ █▀▄ █ █ █▀ ▀█▀ ▄▀█ █    █ █ █ █▀▄▀█",
+  "▀▄▄ █▀▄  █  ▄█  █  █▀█ █▄▄  ▀▄▀ █ █ ▀ █",
+}
+local header_big = {
+  " ██████ ██████  ██    ██ ███████ ████████  █████  ██     ██    ██ ██ ███    ███ ",
+  "██      ██   ██  ██  ██  ██         ██    ██   ██ ██     ██    ██ ██ ████  ████ ",
+  "██      ██████    ████   ███████    ██    ███████ ██     ██    ██ ██ ██ ████ ██ ",
+  "██      ██   ██    ██         ██    ██    ██   ██ ██      ██  ██  ██ ██  ██  ██ ",
+  " ██████ ██   ██    ██    ███████    ██    ██   ██ ███████  ████   ██ ██      ██ ",
+}
+
+local header_stylish = {
+  "  _____                _        ___      ___           ",
+  " / ____|              | |      | \\ \\    / (_)          ",
+  "| |     _ __ _   _ ___| |_ __ _| |\\ \\  / / _ _ __ ___  ",
+  "| |    | '__| | | / __| __/ _` | | \\ \\/ / | | '_ ` _ \\ ",
+  "| |____| |  | |_| \\__ \\ || (_| | |  \\  /  | | | | | | |",
+  " \\_____|_|   \\__, |___/\\__\\__,_|_|   \\/   |_|_| |_| |_|",
+  "              __/ |                                    ",
+  "             |___/                                     ",
+}
+
+local header = {
+  luavim = header_luavim,
+  small = header_small,
+  big = header_big,
+  stylish = header_stylish
+}
+
+
 dashboard.section.header.type = "text";
-dashboard.section.header.val = header;
+dashboard.section.header.val = header.stylish;
 dashboard.section.header.opts = {
   position = "center",
   hl = "CrystalHeader",
@@ -106,9 +139,10 @@ local function button(sc, txt, keybind, keybind_opts)
 end
 
 dashboard.section.buttons.val = {
+  -- TODO: Load last session
   button("<C-P>", icons.fileNoBg .. " " .. "Find File", "<cmd>Telescope find_files<CR>", {}),
   button("<S-P>", icons.t .. " " .. "Find Word", "<cmd>lua require('plugins.telescope.pickers.multi-rg')()<CR>", {}),
-  button("SPC s h", icons.fileRecent .. " " .. "Recents", "<cmd>Telescope oldfiles hidden=true<CR>", {}),
+  -- button("SPC s h", icons.fileRecent .. " " .. "Recents", "<cmd>Telescope oldfiles hidden=true<CR>", {}),
   button("SPC / s d", icons.timer .. " " .. "Load Current Dir",
     "<cmd>SessionManager load_current_dir_session<CR>", {}),
   button("SPC / u", icons.container .. " " .. "Update Plugins", "<cmd>PackerSync<CR>", {}),

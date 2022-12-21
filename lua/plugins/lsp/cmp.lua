@@ -4,19 +4,6 @@ local icons = require('icons')
 local lspkind = require('lspkind')
 
 -- ╭──────────────────────────────────────────────────────────╮
--- │ Utils                                                    │
--- ╰──────────────────────────────────────────────────────────╯
-local types = require("cmp.types")
-
-local function deprioritize_text(entry1, entry2)
-  print(entry1:get_kind())
-  if entry1:get_kind() == types.lsp.CompletionItemKind.Text then return false end
-  if entry2:get_kind() == types.lsp.CompletionItemKind.Text then return true end
-  -- if entry1:get_kind() == types.lsp.CompletionItemKind.Snippet then return false end
-  -- if entry2:get_kind() == types.lsp.CompletionItemKind.Snippet then return true end
-end
-
--- ╭──────────────────────────────────────────────────────────╮
 -- │ Setup                                                    │
 -- ╰──────────────────────────────────────────────────────────╯
 
@@ -115,6 +102,7 @@ cmp.setup({
     }),
   }),
 
+  -- https://www.reddit.com/r/neovim/comments/u3c3kw/how_do_you_sorting_cmp_completions_items/
   sources = cmp.config.sources({
     { name = 'npm', priority = 9, keyword_length = 4 },
     { name = 'nvim_lsp', priority = 9 },
@@ -123,6 +111,7 @@ cmp.setup({
     { name = 'buffer', priority = 6, keyword_length = 5, option = buffer_option, max_item_count = 8 },
     { name = 'nvim_lua', priority = 5 },
     { name = "spell", keyword_length = 3, priority = 4, keyword_pattern = [[\w\+]] },
+    -- TODO: check fuzzy_path out
     --{ name = "fuzzy_path", priority = 4 }, -- from tzacher
     { name = 'path', priority = 3 },
     { name = 'calc', priority = 2 }
@@ -137,7 +126,6 @@ cmp.setup({
       cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
       cmp.config.compare.offset,
       cmp.config.compare.order,
-      -- deprioritize_text,
     }
   },
 
