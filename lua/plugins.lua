@@ -99,6 +99,7 @@ return require('packer').startup({
     use { 'mg979/vim-visual-multi', config = "require('plugins.vim-visual-multi')" }
     use { 'karb94/neoscroll.nvim', config = "require('plugins.movement.neoscroll')" }
     use { 'ggandor/leap.nvim', config = "require('plugins.movement.leap')", requires = { 'tpope/vim-repeat' } }
+    use { 'ggandor/flit.nvim', config = "require('plugins.movement.flit')" }
 
     -- General
     use { 'AndrewRadev/splitjoin.vim' }
