@@ -20,7 +20,7 @@ return require('packer').startup({
     use { 'MunifTanjim/nui.nvim' }
 
     -- Glamour
-    use { 'folke/tokyonight.nvim', config = "require('theme')" }
+    use { 'folke/tokyonight.nvim' }
     use { 'NvChad/nvim-colorizer.lua', config = "require('plugins.glamour.colorizer')" }
     use { 'lukas-reineke/indent-blankline.nvim', config = "require('plugins.glamour.indent')" }
     use { 'danilamihailov/beacon.nvim' }
@@ -140,7 +140,6 @@ return require('packer').startup({
         { 'nvim-lua/plenary.nvim' },
       }
     }
-
 
     -- TODO: Testing
     -- use {

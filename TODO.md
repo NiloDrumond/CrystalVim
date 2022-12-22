@@ -12,6 +12,7 @@
 
 # Improvements
 - Telescope
+  - Search inside folder
   - Live grep: ignore yarn.lock
     - kinda solved with .rgignore
   - https://github.com/nvim-telescope/telescope-github.nvim

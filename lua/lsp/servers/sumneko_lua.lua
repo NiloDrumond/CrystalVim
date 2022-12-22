@@ -7,7 +7,7 @@ M.settings = {
     },
     diagnostics = {
       enable = true,
-      globals = { 'vim', 'use' },
+      globals = { 'vim', 'use', 'packer_plugins', 'use_rocks' },
     },
     workspace = {
       library = vim.api.nvim_get_runtime_file('', true),
