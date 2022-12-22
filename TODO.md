@@ -5,6 +5,8 @@
 - [x] Dashboard
 - [ ] Hop (possibly)
 - [ ] Rust env
+- [ ] <leader>c -> language dependant with whichkey
+- [ ] hotkey to package.json and Cargo.toml
 - [ ] Session Manager
 - [ ] Diffview
 - [ ] Telescope through modified git files

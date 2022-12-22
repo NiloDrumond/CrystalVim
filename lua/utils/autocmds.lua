@@ -43,3 +43,6 @@ vim.api.nvim_create_autocmd("FileType",
 -- NPM
 vim.api.nvim_create_autocmd("BufEnter", { pattern = { "package.json" },
   callback = function() pwk.attach_npm(0) end })
+
+vim.api.nvim_create_autocmd("BufEnter", { pattern = { "Cargo.toml" },
+  callback = function() pwk.attach_cargo(0) end })

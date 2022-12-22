@@ -26,6 +26,7 @@ end
 
 local source_mapping = {
   npm                     = icons.terminal .. 'NPM',
+  crates                  = icons.terminal .. "CRA",
   nvim_lsp                = icons.code .. 'LSP',
   nvim_lsp_signature_help = icons.func .. 'SIG',
   buffer                  = icons.buffer .. 'BUF',
@@ -143,13 +144,25 @@ cmp.setup({
   },
 })
 
--- Set configuration for specific filetype.
+--  ╭──────────────────────────────────────────────────────────╮
+--  │ Filetype specific                                        │
+--  ╰──────────────────────────────────────────────────────────╯
+
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
     { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
   }, {
     { name = 'buffer' },
   })
+})
+
+
+vim.api.nvim_create_autocmd("BufRead", {
+  group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
+  pattern = "Cargo.toml",
+  callback = function()
+    cmp.setup.buffer({ sources = { { name = "crates", priority = 9 } } })
+  end,
 })
 
 -- ╭──────────────────────────────────────────────────────────╮

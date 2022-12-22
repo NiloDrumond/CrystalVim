@@ -312,8 +312,41 @@ local function attach_npm(bufnr)
   })
 end
 
+local function attach_cargo(bufnr)
+  wk.register({
+    c = {
+      name = "crates",
+      t = { '<cmd>lua require("crates").toggle()<CR>', 'toggle' },
+      r = { '<cmd>lua require("crates").reload()<CR>', 'reload' },
+      v = { '<cmd>lua require("crates").show_versions_popup()<CR>', 'versions popup' },
+      f = { '<cmd>lua require("crates").show_features_popup()<CR>', 'features popup' },
+      d = { '<cmd>lua require("crates").show_dependencies_popup()<CR>', 'dependencies popup' },
+      u = { '<cmd>lua require("crates").update_crate()<CR>', 'update' },
+      a = { '<cmd>lua require("crates").update_all_crates()<CR>', 'update all' },
+      U = { '<cmd>lua require("crates").upgrade_crate()<CR>', 'upgrade' },
+      A = { '<cmd>lua require("crates").upgrade_all_crates()<CR>', 'upgrade all' },
+      H = { '<cmd>lua require("crates").open_homepage()<CR>', 'homepage' },
+      R = { '<cmd>lua require("crates").open_repository()<CR>', 'repository' },
+      D = { '<cmd>lua require("crates").open_documentation()<CR>', 'documentation' },
+      C = { '<cmd>lua require("crates").open_crates_io()<CR>', 'crates io' },
+    }
+  },
+    { buffer = bufnr, mode = "n", prefix = "<leader>", silent = true, noremap = true, nowait = false }
+  )
+
+  wk.register({
+    c = {
+      u = { '<cmd>lua require("crates").update_crates()<CR>', 'update selected' },
+      U = { '<cmd>lua require("crates").upgrade_crates()<CR>', 'upgrade selected' },
+    }
+  }, {
+    buffer = bufnr, mode = "v", prefix = "<leader>", silent = true, noremap = true, nowait = false
+  })
+end
+
 return {
   attach_spectre = attach_spectre,
   attach_zen = attach_zen,
+  attach_cargo = attach_cargo,
   attach_npm = attach_npm
 }

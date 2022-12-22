@@ -81,9 +81,9 @@ return require('packer').startup({
     use { 'vuki656/package-info.nvim', event = "BufEnter package.json",
       config = "require('plugins.lsp.package-info')" }
     -- TODO: RUST
-    -- use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust-tools')", requires = { 'neovim/nvim-lspconfig' } }
-    -- https://github.com/Saecki/crates.nvim
-    -- use { 'lvimuser/lsp-inlayhints.nvim', config = function() require('lsp-inlayhints').setup() end }
+    -- use { 'simrat39/rust-tools.nvim', config = "require('plugins.lsp.rust-tools')", requires = { 'neovim/nvim-lspconfig' } }
+    use { 'Saecki/crates.nvim', config = "require('plugins.lsp.crates')", event = "BufRead Cargo.toml"}
+    use { 'lvimuser/lsp-inlayhints.nvim', config = function() require('lsp-inlayhints').setup() end }
 
     -- CMP
     use { 'hrsh7th/nvim-cmp', event = 'BufEnter', config = "require('plugins.lsp.cmp')" }

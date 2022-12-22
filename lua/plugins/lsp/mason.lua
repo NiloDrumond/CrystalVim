@@ -13,7 +13,7 @@ mason.setup {
 
 mason_lsp.setup {
   -- A list of servers to automatically install if they're not already installed
-  ensure_installed = { 'sumneko_lua', 'rust_analyzer', 'jsonls' },
+  ensure_installed = { 'sumneko_lua', 'rust_analyzer', 'jsonls', 'taplo' },
   -- ensure_installed = { "bash-language-server", "css-lsp", "eslint-lsp", "graphql-language-service-cli", "html-lsp",
   --   "json-lsp", "lua-language-server", "tailwindcss-language-server", "typescript-language-server",
   --   "chrome-debug-adapter", "node-debug2-adapter", "prisma-language-server" },
