@@ -1,8 +1,6 @@
 local alpha = require("alpha")
 local icons = require("icons")
 local if_nil = vim.F.if_nil
-local fn = vim.fn
-local config_dir = fn.stdpath('config')
 local dashboard = require("alpha.themes.dashboard")
 
 -- ╭──────────────────────────────────────────────────────────╮
@@ -21,9 +19,19 @@ local header_luavim = {
 
 local header_small = {
   "",
+  "▄▄▄                        ▄   ▄        ",
+  "█   █▀▄ █ █ ██▀ ▀█▀ ▄▀█ █  ▀▄ ▄▀ █ █▀▄▀█",
+  "█▄▄ █▀▄  █  ▄▄█  █  █▀█ █▄▄ ▀▄▀  █ █ ▀ █",
+}
+
+local header_small_crystal = {
   "",
-  "▄▀▀ █▀▄ █ █ █▀ ▀█▀ ▄▀█ █    █ █ █ █▀▄▀█",
-  "▀▄▄ █▀▄  █  ▄█  █  █▀█ █▄▄  ▀▄▀ █ █ ▀ █",
+  "",
+  "▄▀▀ █▀█ █ █ ██▀ ▀█▀ ▄▀█ █   █ █ █ █▀▄▀█",
+  "▀▄▄ █▀▄  █  ▄▄█  █  █▀█ █▄▄ ▀▄▀ █ █ ▀ █",
+  "",
+  "",
+  "        V I O L E T   N I G H T",
 }
 local header_big = {
   " ██████ ██████  ██    ██ ███████ ████████  █████  ██     ██    ██ ██ ███    ███ ",
@@ -44,16 +52,21 @@ local header_stylish = {
   "             |___/                                     ",
 }
 
+local header_art = {
+}
+
 local header = {
   luavim = header_luavim,
   small = header_small,
+  small_crystal = header_small_crystal,
   big = header_big,
-  stylish = header_stylish
+  stylish = header_stylish,
+  art = header_art
 }
 
 
 dashboard.section.header.type = "text";
-dashboard.section.header.val = header.stylish;
+dashboard.section.header.val = header.small_crystal;
 dashboard.section.header.opts = {
   position = "center",
   hl = "CrystalHeader",
@@ -154,28 +167,6 @@ dashboard.section.buttons.val = {
 -- ╭──────────────────────────────────────────────────────────╮
 -- │ Footer                                                   │
 -- ╰──────────────────────────────────────────────────────────╯
-
-local function file_exists(file)
-  local f = io.open(file, "rb")
-  if f then f:close() end
-  return f ~= nil
-end
-
-local function line_from(file)
-  if not file_exists(file) then return {} end
-  local lines = {}
-  for line in io.lines(file) do
-    lines[#lines + 1] = line
-  end
-  return lines
-end
-
-local function footer()
-  local plugins = #vim.tbl_keys(packer_plugins)
-  local v = vim.version()
-  local ecovim_version = line_from(config_dir .. "/.ecovim.version")
-  return string.format(" v%d.%d.%d   %d   %s ", v.major, v.minor, v.patch, plugins, ecovim_version[1])
-end
 
 dashboard.section.footer.val = "~ Welcome Home ~"
 dashboard.section.footer.opts = {

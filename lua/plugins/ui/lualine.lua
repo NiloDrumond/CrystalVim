@@ -1,9 +1,5 @@
 local navic = require('nvim-navic')
 
-local function empty()
-  return { { " " } }
-end
-
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -13,6 +9,7 @@ require('lualine').setup {
     disabled_filetypes = {
       statusline = {},
       winbar = {},
+      "alpha"
     },
     ignore_focus = {},
     always_divide_middle = true,
