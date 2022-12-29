@@ -3,22 +3,20 @@
 - [x] Telescope
 - [x] Leap
 - [x] Dashboard
-- [ ] Hop (possibly)
+- [x] Telescope through modified git files ->  <leader>gs
+- [x] Notifications for Nvim-Tree
+- [x] <leader>c -> language dependant with whichkey
+- [x] hotkey to package.json and Cargo.toml
 - [ ] Rust env
 - [ ] [path for autoimports] https://stackoverflow.com/questions/72668920/how-to-show-paths-for-auto-imports-with-neovim-nvim-cmp
-- [x] <leader>c -> language dependant with whichkey
-- [ ] hotkey to package.json and Cargo.toml
 - [ ] Dash with vim-startify (alpha)
 - [ ] Session Manager
 - [ ] Diffview
-- [ ] Telescope through modified git files
-- [x] Notifications for Nvim-Tree
+- [ ] Hop (possibly)
 
 # Improvements
 - Spectre
   - Refactor inside folder (for modules and components)
-- Package-info
-  - only show versions different from written
 - Telescope
   - Search inside folder
   - Live grep: ignore yarn.lock

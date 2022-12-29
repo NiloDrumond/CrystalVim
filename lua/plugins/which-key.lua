@@ -135,8 +135,6 @@ local normal_mode_mappings = {
     p = { '<cmd>BufferPick<CR>', 'Pick Buffer' },
   },
 
-
-
   g = {
     name = "Git",
     b = { "blame line" },

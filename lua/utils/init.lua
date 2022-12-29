@@ -1,7 +1,24 @@
 local M = {}
+local Job = require 'plenary.job'
 
 M.add_whitespaces = function(number)
   return string.rep(" ", number)
+end
+
+M.open_package = function()
+  local result = nil
+  Job:new({
+    command = "fd",
+    args = { [[package\.json|Cargo\.toml]] },
+    on_stdout = function(_, data)
+      if data ~= nil and result == nil then
+        result = data
+      end
+    end
+  }):sync()
+  if result ~= nil then
+    vim.cmd('e ' .. result)
+  end
 end
 
 

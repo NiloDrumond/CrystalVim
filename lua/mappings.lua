@@ -1,5 +1,7 @@
 local keymap = vim.keymap.set
 local silent = { silent = true, noremap = true }
+local utils = require("utils")
+
 
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Movement                                                 │
@@ -79,6 +81,9 @@ keymap("v", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", silent)
 
 -- File explorer
 keymap("n", "<leader>e", "<cmd>lua require'nvim-tree'.toggle()<CR>", silent)
+
+-- Package (package.json / Cargo.toml)
+keymap("n", "gp", utils.open_package, silent)
 
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Searching                                                │
