@@ -28,6 +28,16 @@ local present, _ = pcall(require, "which-key")
 if not present then return end
 local _, pwk = pcall(require, "plugins.which-key")
 
+-- LSP
+vim.api.nvim_create_autocmd("BufEnter",
+  { pattern = { "*.js", "*.jsx", "*.lua" }, callback = function() pwk.attach_common_lsp(0) end })
+
+-- Typescript
+vim.api.nvim_create_autocmd("BufEnter",
+  { pattern = { "*.ts", ".tsx" }, callback = function()
+    pwk.attach_typescript(0)
+  end })
+
 -- Spectre
 vim.api.nvim_create_autocmd("FileType", { pattern = "spectre_panel",
   callback = function() pwk.attach_spectre(0) end })

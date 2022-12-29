@@ -110,8 +110,8 @@ cmp.setup({
     { name = 'luasnip', priority = 8, max_item_count = 6 },
     { name = 'nvim_lsp_signature_help', priority = 8 },
     { name = 'buffer', priority = 6, keyword_length = 5, option = buffer_option, max_item_count = 8 },
-    { name = 'nvim_lua', priority = 5 },
-    { name = "spell", keyword_length = 3, priority = 4, keyword_pattern = [[\w\+]] },
+    { name = 'nvim_lua', priority = 5, ft = "lua" },
+    { name = "spell", keyword_length = 3, priority = 4, keyword_pattern = [[\w\+]], ft = "markup" },
     -- TODO: check fuzzy_path out
     --{ name = "fuzzy_path", priority = 4 }, -- from tzacher
     { name = 'path', priority = 3 },
@@ -119,7 +119,7 @@ cmp.setup({
   }),
 
   sorting = {
-    priority_weight = 1,
+    priority_weight = 2,
     comparators = {
       cmp.config.compare.exact,
       cmp.config.compare.locality,

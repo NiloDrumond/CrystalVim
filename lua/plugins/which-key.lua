@@ -1,4 +1,5 @@
 local wk = require('which-key')
+local utils = require('utils')
 
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Configs                                                  │
@@ -134,17 +135,6 @@ local normal_mode_mappings = {
     p = { '<cmd>BufferPick<CR>', 'Pick Buffer' },
   },
 
-  c = {
-    name = "LSP",
-    a = { 'code action' },
-    d = { '<cmd>TroubleToggle<CR>', 'local diagnostics' },
-    D = { '<cmd>Telescope diagnostics wrap_results=true<CR>', 'workspace diagnostics' },
-    f = { 'format' },
-    l = { 'line diagnostics' },
-    r = { 'rename' },
-    t = { '<cmd>LspToggleAutoFormat<CR>', 'toggle format on save' },
-    i = { "<cmd>TypescriptAddMissingImports<CR>", 'add missing imports' }
-  },
 
 
   g = {
@@ -224,13 +214,6 @@ local visual_mode_mappings = {
     c = { 'comment box' },
   },
 
-  c = {
-    name = "LSP",
-    a = { 'range code action' },
-    f = { 'range format' },
-  },
-
-
   -- g = {
   --   name = "Git",
   --   h = {
@@ -240,10 +223,10 @@ local visual_mode_mappings = {
   --   },
   -- },
 
-  -- p = {
-  --   name = "Project",
-  --   r = { 'refactor' },
-  -- },
+  p = {
+    name = "Project",
+    r = { 'refactor' },
+  },
 
   -- t = {
   --   name = "Table Mode",
@@ -262,8 +245,59 @@ wk.register(visual_mode_mappings, visual_opts)
 --  │ Attachables                                              │
 --  ╰──────────────────────────────────────────────────────────╯
 
+local M = {};
 
-local function attach_spectre(bufnr)
+local default_opts = {
+  prefix = "<leader>",
+  silent = true,
+  noremap = true,
+  nowait = false,
+}
+
+local common_lsp_keys = {
+  name = "LSP",
+  a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'code action' },
+  d = { '<cmd>TroubleToggle<CR>', 'local diagnostics' },
+  D = { '<cmd>Telescope diagnostics wrap_results=true<CR>', 'workspace diagnostics' },
+  f = { "<cmd>lua vim.lsp.buf.format()<CR>", 'format' },
+  l = { "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", 'line diagnostics' },
+  r = { "<cmd>lua vim.lsp.buf.rename()<CR>", 'rename' },
+  t = { '<cmd>LspToggleAutoFormat<CR>', 'toggle format on save' },
+}
+
+M.attach_common_lsp = function(bufnr)
+  wk.register({
+    c = common_lsp_keys
+  }, utils.spread({
+    buffer = bufnr,
+    mode = "n",
+  }, default_opts))
+
+  wk.register({
+    c = {
+      name = "LSP",
+      a = { "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", 'range code action' },
+      f = { "<cmd>'<.'>lua vim.lsp.buf.range_formatting()<CR>", 'range format' },
+    }
+  },
+    utils.spread({ buffer = bufnr, mode = "v" }, default_opts))
+
+end
+
+M.attach_typescript = function(bufnr)
+  wk.register({
+    c = utils.spread({
+      i = { "<cmd>TypescriptAddMissingImports<CR>", 'add missing imports' }
+    }, common_lsp_keys)
+  },
+    utils.spread({
+      buffer = bufnr,
+      mode = "n"
+    }, default_opts)
+  )
+end
+
+M.attach_spectre = function(bufnr)
   wk.register({
     ["R"] = { '[SPECTRE] Replace all' },
     ["o"] = { '[SPECTRE] Show options' },
@@ -279,7 +313,7 @@ local function attach_spectre(bufnr)
   })
 end
 
-local function attach_zen(bufnr)
+M.attach_zen = function(bufnr)
   wk.register({
     ["z"] = { '<cmd>ZenMode<CR>', 'zen' },
   }, {
@@ -292,9 +326,9 @@ local function attach_zen(bufnr)
   })
 end
 
-local function attach_npm(bufnr)
+M.attach_npm = function(bufnr)
   wk.register({
-    n = {
+    c = {
       name = "NPM",
       c = { '<cmd>lua require("package-info").change_version()<CR>', 'change version' },
       d = { '<cmd>lua require("package-info").delete()<CR>', 'delete package' },
@@ -312,7 +346,7 @@ local function attach_npm(bufnr)
   })
 end
 
-local function attach_cargo(bufnr)
+M.attach_cargo = function(bufnr)
   wk.register({
     c = {
       name = "crates",
@@ -344,9 +378,4 @@ local function attach_cargo(bufnr)
   })
 end
 
-return {
-  attach_spectre = attach_spectre,
-  attach_zen = attach_zen,
-  attach_cargo = attach_cargo,
-  attach_npm = attach_npm
-}
+return M;

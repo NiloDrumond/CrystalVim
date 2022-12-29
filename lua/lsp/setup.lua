@@ -12,6 +12,11 @@ local handlers = {
 
 local navic = require('nvim-navic')
 local function on_attach(client, bufnr)
+  -- https://www.reddit.com/r/neovim/comments/soep3h/comment/hwadton/
+  if client.name == "tsserver" or client.name == "html" then
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
+  end
   if client.server_capabilities.documentSymbolProvider then
     navic.attach(client, bufnr)
   end
