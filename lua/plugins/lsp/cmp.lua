@@ -27,7 +27,8 @@ end
 local source_mapping = {
   npm                     = icons.terminal .. 'NPM',
   crates                  = icons.terminal .. "CRA",
-  nvim_lsp                = icons.code .. 'LSP',
+  nvim_lsp                = '',
+  -- nvim_lsp                = icons.code .. 'LSP',
   nvim_lsp_signature_help = icons.func .. 'SIG',
   buffer                  = icons.buffer .. 'BUF',
   nvim_lua                = icons.bomb,
@@ -105,7 +106,6 @@ cmp.setup({
 
   -- https://www.reddit.com/r/neovim/comments/u3c3kw/how_do_you_sorting_cmp_completions_items/
   sources = cmp.config.sources({
-    { name = 'npm', priority = 9, keyword_length = 4 },
     { name = 'nvim_lsp', priority = 9 },
     { name = 'luasnip', priority = 8, max_item_count = 6 },
     { name = 'nvim_lsp_signature_help', priority = 8 },
@@ -136,7 +136,12 @@ cmp.setup({
       local menu = source_mapping[entry.source.name]
       local maxwidth = 50
 
-      vim_item.menu = menu
+      -- NOTE: autoimport path: https://stackoverflow.com/questions/72668920/how-to-show-paths-for-auto-imports-with-neovim-nvim-cmp
+      if entry.completion_item.detail ~= nil and entry.completion_item.detail ~= '' then
+        vim_item.menu = menu .. entry.completion_item.detail
+      else
+        vim_item.menu = menu
+      end
       vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
 
       return vim_item
@@ -164,6 +169,15 @@ vim.api.nvim_create_autocmd("BufRead", {
     cmp.setup.buffer({ sources = { { name = "crates", priority = 9 } } })
   end,
 })
+
+vim.api.nvim_create_autocmd("BufRead", {
+  group = vim.api.nvim_create_augroup("CmpSourceNPM", { clear = true }),
+  pattern = "package.json",
+  callback = function()
+    cmp.setup.buffer({ sources = { { name = "npm", priority = 9, keyword_length = 4 } } })
+  end,
+})
+
 
 -- ╭──────────────────────────────────────────────────────────╮
 -- │ Cmdline Setup                                            │

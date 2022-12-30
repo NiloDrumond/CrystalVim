@@ -8,7 +8,7 @@
 - [x] <leader>c -> language dependant with whichkey
 - [x] hotkey to package.json and Cargo.toml
 - [ ] Rust env
-- [ ] [path for autoimports] https://stackoverflow.com/questions/72668920/how-to-show-paths-for-auto-imports-with-neovim-nvim-cmp
+- [x] [path for autoimports] https://stackoverflow.com/questions/72668920/how-to-show-paths-for-auto-imports-with-neovim-nvim-cmp
 - [ ] Dash with vim-startify (alpha)
 - [ ] Session Manager
 - [ ] Diffview
