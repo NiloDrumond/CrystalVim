@@ -21,6 +21,7 @@ keymap("n", "<C-c>", "<C-w>c", silent)
 keymap("x", "<S-k>", ":move '<-2<CR>gv-gv", silent)
 keymap("x", "<S-j>", ":move '>+1<CR>gv-gv", silent)
 
+
 -- Navigation around the syntax-tree
 keymap({ "n", "v", "o" }, 'Z', "<cmd>lua require('tree-climber').goto_parent()<CR>", silent)
 keymap({ "n", "v", "o" }, 'X', "<cmd>lua require('tree-climber').goto_child()<CR>", silent)

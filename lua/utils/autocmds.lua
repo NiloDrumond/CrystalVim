@@ -1,4 +1,3 @@
-
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost",
   { callback = function() vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 100 }) end })
@@ -31,7 +30,7 @@ local _, pwk = pcall(require, "plugins.which-key")
 
 -- LSP
 vim.api.nvim_create_autocmd("BufEnter",
-  { pattern = { "*.js", "*.jsx", "*.lua" }, callback = function() pwk.attach_common_lsp(0) end })
+  { pattern = { "*.js", "*.jsx", "*.lua", "*.rs" }, callback = function() pwk.attach_common_lsp(0) end })
 
 -- Typescript
 vim.api.nvim_create_autocmd("BufEnter",

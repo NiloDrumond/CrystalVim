@@ -24,7 +24,7 @@ return require('packer').startup({
     use { 'NvChad/nvim-colorizer.lua', config = "require('plugins.glamour.colorizer')" }
     use { 'lukas-reineke/indent-blankline.nvim', config = "require('plugins.glamour.indent')" }
     use { 'danilamihailov/beacon.nvim' }
-    use { 'EdenEast/nightfox.nvim', config = "require('plugins.glamour.nightfox')" }
+    -- use { 'EdenEast/nightfox.nvim', config = "require('plugins.glamour.nightfox')" }
 
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.syntax.treesitter')" }
@@ -80,8 +80,7 @@ return require('packer').startup({
     use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig", config = "require('plugins.lsp.navic')" }
     use { 'vuki656/package-info.nvim', event = "BufEnter package.json",
       config = "require('plugins.lsp.package-info')" }
-    -- TODO: RUST
-    -- use { 'simrat39/rust-tools.nvim', config = "require('plugins.lsp.rust-tools')", requires = { 'neovim/nvim-lspconfig' } }
+    use { 'kdarkhan/rust-tools.nvim', config = "require('plugins.lsp.rust-tools')", requires = { 'neovim/nvim-lspconfig' } }
     use { 'Saecki/crates.nvim', config = "require('plugins.lsp.crates')", event = "BufRead Cargo.toml"}
     use { 'lvimuser/lsp-inlayhints.nvim', config = function() require('lsp-inlayhints').setup() end }
 
