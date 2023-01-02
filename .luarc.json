@@ -1,4 +1,11 @@
 {
+    "Lua.diagnostics.globals": [
+        "vim",
+        "use",
+        "packer_plugins",
+        "use_rocks",
+        "cystal"
+    ],
     "Lua.workspace.checkThirdParty": false,
     "runtime.version": "Lua 5.4"
 }

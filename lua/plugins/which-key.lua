@@ -108,6 +108,7 @@ local normal_mode_mappings = {
 
   ["/"] = {
     name = "CrystalVim",
+    ["/"] = { '<cmd>Alpha<CR>', 'open dashboard' },
     i = { '<cmd>PackerInstall<CR>', 'install plugins' },
     c = { '<cmd>e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<CR>', 'open config' },
     d = { '<cmd>e ~/.config/.zshrc<CR>', 'open dotfiles' },

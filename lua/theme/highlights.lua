@@ -3,10 +3,10 @@ local crystal = require("theme.crystal")
 return function(hl, c)
   local none = "NONE"
 
-  hl.CrystalVimPrimary = {
+  hl.CrystalPrimary = {
     fg = crystal.primary
   }
-  hl.CrystalVimSecondary = {
+  hl.CrystalSecondary = {
     fg = crystal.secondary
   }
 
@@ -26,10 +26,16 @@ return function(hl, c)
   hl.CrystalHeader = {
     fg = crystal.primary
   }
+  hl.AlphaShortcut = {
+    fg = c.orange
+  }
   hl.CrystalHeaderInfo = {
     fg = crystal.secondary
   }
   hl.CrystalFooter = {
+    fg = crystal.secondary
+  }
+  hl.CrystalSubtitle = {
     fg = crystal.secondary
   }
 

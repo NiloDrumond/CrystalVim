@@ -13,6 +13,8 @@
 - [ ] Session Manager
 - [ ] Diffview
 - [ ] Hop (possibly)
+- [ ] open nvim-tree when leaving Alpha
+- [ ] close nvim-tree when entering alpha
 
 # Improvements
 - Spectre
