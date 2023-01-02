@@ -178,6 +178,18 @@ require 'nvim-tree'.setup {
 
 vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>lua require'nvim-tree'.toggle()<CR>", { noremap = true, silent = true })
 
+-- https://github.com/nvim-tree/nvim-tree.lua/discussions/1517
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
+  callback = function(args)
+    if vim.fn.expand "%:p" ~= "" then
+      vim.api.nvim_del_autocmd(args.id)
+      vim.cmd "noautocmd NvimTreeOpen"
+      vim.cmd "noautocmd wincmd p"
+    end
+  end,
+})
+
+
 nvim_tree_events.subscribe('TreeOpen', function()
   bufferline_api.set_offset(TREE_WIDTH + 1, utils.add_whitespaces(13) .. '             ')
 end)

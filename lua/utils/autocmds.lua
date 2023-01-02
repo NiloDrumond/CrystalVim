@@ -19,7 +19,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.lua", 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.cargo", "*.toml" },
   command = "setlocal spell" })
 
-
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ WhickKey Attach                                          │
 --  ╰──────────────────────────────────────────────────────────╯

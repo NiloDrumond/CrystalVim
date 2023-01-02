@@ -196,7 +196,6 @@ local function mru(start, items_number, opts)
   opts = opts or mru_opts
   items_number = if_nil(items_number, 10)
 
-  print("render")
   local oldfiles = {}
   for _, v in pairs(vim.v.oldfiles) do
     if #oldfiles == items_number then

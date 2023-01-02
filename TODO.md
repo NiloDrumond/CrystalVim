@@ -9,12 +9,11 @@
 - [x] hotkey to package.json and Cargo.toml
 - [x] Rust env
 - [x] [path for autoimports] https://stackoverflow.com/questions/72668920/how-to-show-paths-for-auto-imports-with-neovim-nvim-cmp
-- [ ] Dash with vim-startify (alpha)
+- [x] Dash with vim-startify (alpha)
+- [x] open nvim-tree when leaving Alpha
 - [ ] Session Manager
 - [ ] Diffview
 - [ ] Hop (possibly)
-- [ ] open nvim-tree when leaving Alpha
-- [ ] close nvim-tree when entering alpha
 
 # Improvements
 - Spectre
