@@ -65,8 +65,7 @@ return require('packer').startup({
     use { 'kevinhwang91/nvim-hlslens', config = "require('plugins.ui.hlslens')", after = { 'nvim-scrollbar' } }
     use { 'rcarriga/nvim-notify', config = "require('plugins.ui.notify')" }
     use { 'goolord/alpha-nvim', config = "require('plugins.ui.alpha')" }
-    -- TODO: RUST
-    -- use { "preservim/tagbar", config = "require('plugins.tagbar')" }
+    use { "preservim/tagbar", config = "require('plugins.syntax.tagbar')" }
 
     -- LSP Base
     use { 'williamboman/mason.nvim', config = "require('plugins.lsp.mason')" }
