@@ -94,6 +94,9 @@ keymap("n", "gp", utils.open_package, silent)
 keymap("n", "<C-p>", "<CMD>lua require('telescope.builtin').find_files()<CR>")
 keymap("n", "<S-p>", "<CMD>lua require('plugins.telescope.pickers.custom_live_grep').live_grep()<CR>")
 
+-- Open URLs with Firefox
+keymap("n", 'gx', ":execute '!firefox ' . shellescape(expand('<cfile>'), 1)<CR>", silent)
+
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Buffers                                                  │
 --  ╰──────────────────────────────────────────────────────────╯
