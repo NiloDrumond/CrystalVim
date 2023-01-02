@@ -1,5 +1,5 @@
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'lua', 'typescript', 'tsx', 'javascript', 'rust', 'toml', 'help', 'yaml', 'json' },
+  ensure_installed = { 'lua', 'typescript', 'tsx', 'javascript', 'rust', 'toml', 'help', 'yaml', 'json', 'wgsl' },
   highlight = {
     enable = true,
     custom_captures = {
