@@ -89,6 +89,7 @@ require("scrollbar").setup({
     "terminal",
   },
   excluded_filetypes = {
+    "tagbar",
     "prompt",
     "TelescopePrompt",
     "noice",
