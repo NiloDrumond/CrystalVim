@@ -92,7 +92,7 @@ keymap("n", "gp", utils.open_package, silent)
 
 -- Telescope
 keymap("n", "<C-p>", "<CMD>lua require('telescope.builtin').find_files()<CR>")
-keymap("n", "<S-p>", "<CMD>Telescope live_grep<CR>")
+keymap("n", "<S-p>", "<CMD>lua require('plugins.telescope.pickers.custom_live_grep').live_grep()<CR>")
 
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Buffers                                                  │

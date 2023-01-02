@@ -11,6 +11,7 @@
 - [x] [path for autoimports] https://stackoverflow.com/questions/72668920/how-to-show-paths-for-auto-imports-with-neovim-nvim-cmp
 - [x] Dash with vim-startify (alpha)
 - [x] open nvim-tree when leaving Alpha
+- [x] search inside folder
 - [ ] Session Manager
 - [ ] Diffview
 - [ ] Hop (possibly)
@@ -19,7 +20,6 @@
 - Spectre
   - Refactor inside folder (for modules and components)
 - Telescope
-  - Search inside folder
   - Live grep: ignore yarn.lock
     - kinda solved with .rgignore
   - https://github.com/nvim-telescope/telescope-github.nvim

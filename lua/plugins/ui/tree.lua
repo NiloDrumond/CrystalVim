@@ -14,6 +14,20 @@ local git_icons = {
   ignored = "◌"
 }
 
+local function grep_in(node)
+  if not node then
+    return
+  end
+  local path = node.absolute_path or uv.cwd()
+  if node.type ~= 'directory' and node.parent then
+    path = node.parent.absolute_path
+  end
+  require('telescope.builtin').live_grep({
+    search_dirs = { path },
+    prompt_title = string.format('Grep in [%s]', vim.fs.basename(path)),
+  })
+end
+
 local keymappings = {
   { key = { "<CR>", "<2-LeftMouse>" }, action = "edit" },
   { key = "<C-e>", action = "edit_in_place" },
@@ -50,6 +64,7 @@ local keymappings = {
   { key = "q", action = "close" },
   { key = "g?", action = "toggle_help" },
   { key = "W", action = "collapse_all" },
+  { key = "gs", action = "", action_cb = grep_in, mode = "n" }
   -- { key = "S", action = "search_node" }
 }
 

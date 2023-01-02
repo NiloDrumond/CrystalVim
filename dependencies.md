@@ -9,3 +9,5 @@
 - ripgrep
 - [fd](https://github.com/sharkdp/fd)
 
+# tagbar
+- a ctags implementation such as [universal ctags](https://ctags.io/)

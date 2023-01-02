@@ -1,5 +1,6 @@
-local actions = require('telescope.actions')
-local icons   = require('icons');
+local actions          = require('telescope.actions')
+local icons            = require('icons');
+local custom_live_grep = require("plugins.telescope.pickers.custom_live_grep")
 
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('repo')
@@ -66,6 +67,17 @@ require('telescope').setup {
     find_files = {
       find_command = { "fd", "-H", "--type", "f", '-E', ".git" }
     },
+    live_grep = {
+      -- NOTE: shorten is more performatic
+      -- path_display = {"shorten"}
+      path_display = { 'smart' },
+      mappings = {
+        i = {
+          ['<C-f>'] = custom_live_grep.actions.set_extension,
+          ['<C-l>'] = custom_live_grep.actions.set_folders,
+        }
+      }
+    }
   },
   extensions = {
     fzf = {
