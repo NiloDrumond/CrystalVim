@@ -8,28 +8,12 @@ require 'bufferline'.setup {
   -- Enable/disable current/total tabpages indicator (top right corner)
   tabpages = true,
 
-  -- Enable/disable close button
-  closable = false,
-
   -- Enables/disable clickable tabs
   --  - left-click: go to buffer
   --  - middle-click: delete buffer
   clickable = false,
 
   -- Enables / disables diagnostic symbols
-  diagnostics = {
-    -- you can use a list
-    { enabled = true, icon = 'ﬀ' }, -- ERROR
-    { enabled = false }, -- WARN
-    { enabled = false }, -- INFO
-    { enabled = true }, -- HINT
-
-    -- OR `vim.diagnostic.severity`
-    [vim.diagnostic.severity.ERROR] = { enabled = true, icon = '' },
-    [vim.diagnostic.severity.WARN] = { enabled = false },
-    [vim.diagnostic.severity.INFO] = { enabled = false },
-    [vim.diagnostic.severity.HINT] = { enabled = true },
-  },
 
   -- Excludes buffers from the tabline
   -- exclude_ft = { 'javascript' },
@@ -42,20 +26,29 @@ require 'bufferline'.setup {
   -- Enable/disable icons
   -- if set to 'numbers', will show buffer index in the tabline
   -- if set to 'both', will show buffer index and icons in the tabline
-  icons = 'both',
+  icons = {
+    button = "",
+    filetype = {
+      custom_colors = false
+    },
+    diagnostics = {
+      -- you can use a list
+      { enabled = true, icon = 'ﬀ' }, -- ERROR
+      { enabled = false },          -- WARN
+      { enabled = false },          -- INFO
+      { enabled = true },           -- HINT
+      -- OR `vim.diagnostic.severity`
+      [vim.diagnostic.severity.ERROR] = { enabled = true, icon = '' },
+      [vim.diagnostic.severity.WARN] = { enabled = false },
+      [vim.diagnostic.severity.INFO] = { enabled = false },
+      [vim.diagnostic.severity.HINT] = { enabled = true },
+    },
+  },
 
   -- If set, the icon color will follow its corresponding buffer
   -- highlight group. By default, the Buffer*Icon group is linked to the
   -- Buffer* group (see Highlighting below). Otherwise, it will take its
   -- default value as defined by devicons.
-  icon_custom_colors = false,
-
-  -- Configure icons on the bufferline.
-  icon_separator_active = '▎',
-  icon_separator_inactive = '▎',
-  icon_close_tab = '',
-  icon_close_tab_modified = '●',
-  icon_pinned = '車',
 
   -- If true, new buffers will be inserted at the start/end of the list.
   -- Default is to insert after current buffer.
@@ -86,4 +79,3 @@ require 'bufferline'.setup {
   -- where X is the buffer number. But only a static string is accepted here.
   no_name_title = nil,
 }
-

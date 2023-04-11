@@ -1,20 +1,7 @@
 # TODO
-- [x] Stop Visual mode on CR
-- [x] Telescope
-- [x] Leap
-- [x] Dashboard
-- [x] Telescope through modified git files ->  <leader>gs
-- [x] Notifications for Nvim-Tree
-- [x] <leader>c -> language dependant with whichkey
-- [x] hotkey to package.json and Cargo.toml
-- [x] Rust env
-- [x] [path for autoimports] https://stackoverflow.com/questions/72668920/how-to-show-paths-for-auto-imports-with-neovim-nvim-cmp
-- [x] Dash with vim-startify (alpha)
-- [x] open nvim-tree when leaving Alpha
-- [x] search inside folder
+- [ ] Nvim-Tree de acordo com o arquivo, e não projeto
 - [ ] Session Manager
 - [ ] Diffview
-- [ ] Hop (possibly)
 
 # Improvements
 - Spectre

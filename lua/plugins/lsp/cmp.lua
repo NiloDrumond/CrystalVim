@@ -138,11 +138,11 @@ cmp.setup({
 
       -- NOTE: autoimport path: https://stackoverflow.com/questions/72668920/how-to-show-paths-for-auto-imports-with-neovim-nvim-cmp
       if entry.completion_item.detail ~= nil and entry.completion_item.detail ~= '' then
-        vim_item.menu = menu .. entry.completion_item.detail
+        vim_item.menu = menu .. string.sub(entry.completion_item.detail, 1, 20)
       else
         vim_item.menu = menu
       end
-      vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
+      vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
 
       return vim_item
     end

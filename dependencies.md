@@ -11,3 +11,6 @@
 
 # tagbar
 - a ctags implementation such as [universal ctags](https://ctags.io/)
+
+# rnvimr
+- python-pynvim ueberzug

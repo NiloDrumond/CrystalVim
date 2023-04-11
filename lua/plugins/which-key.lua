@@ -7,20 +7,21 @@ local utils = require('utils')
 
 wk.setup {
   plugins = {
-    marks = true, -- shows a list of your marks on ' and `
+    marks = true,     -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
     -- the presets plugin, adds help for a bunch of default keybindings in Neovim
     -- No actual key bindings are created
     spelling = {
-      enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+      enabled = true,   -- enabling this will show WhichKey when pressing z= to select spelling suggestions
       suggestions = 20, -- how many suggestions should be shown in the list?
     },
-    presets = { operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-      motions = false, -- adds help for motions text_objects = false, -- help for text objects triggered after entering an operator
-      windows = false, -- default bindings on <c-w>
-      nav = false, -- misc bindings to work with windows
-      z = false, -- bindings for folds, spelling and others prefixed with z
-      g = false, -- bindings for prefixed with g
+    presets = {
+      operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+      motions = false,   -- adds help for motions text_objects = false, -- help for text objects triggered after entering an operator
+      windows = false,   -- default bindings on <c-w>
+      nav = false,       -- misc bindings to work with windows
+      z = false,         -- bindings for folds, spelling and others prefixed with z
+      g = false,         -- bindings for prefixed with g
     },
   },
   -- add operators that will trigger motion and text object completion
@@ -36,25 +37,25 @@ wk.setup {
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = "➜", -- symbol used between a key and it's label
-    group = "+", -- symbol prepended to a group
+    group = "+",      -- symbol prepended to a group
   },
   window = {
-    border = "rounded", -- none, single, double, shadow, rounded
-    position = "bottom", -- bottom, top
-    margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+    border = "rounded",       -- none, single, double, shadow, rounded
+    position = "bottom",      -- bottom, top
+    margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]
     padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
   },
   layout = {
-    height = { min = 4, max = 25 }, -- min and max height of the columns
-    width = { min = 20, max = 50 }, -- min and max width of the columns
-    spacing = 4, -- spacing between columns
-    align = "left", -- align columns left, center or right
+    height = { min = 4, max = 25 },                                             -- min and max height of the columns
+    width = { min = 20, max = 50 },                                             -- min and max width of the columns
+    spacing = 4,                                                                -- spacing between columns
+    align = "left",                                                             -- align columns left, center or right
   },
-  ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
+  ignore_missing = false,                                                       -- enable this to hide mappings for which you didn't specify a label
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-  show_help = true, -- show help message on the command line when the popup is visible
+  show_help = true,                                                             -- show help message on the command line when the popup is visible
   -- triggers = "auto", -- automatically setup triggers
-  triggers = { "<leader>" }, -- or specify a list manually
+  triggers = { "<leader>" },                                                    -- or specify a list manually
   triggers_blacklist = {
     -- list of mode / prefixes that should never be hooked by WhichKey
     -- this is mostly relevant for key maps that start with a native binding
@@ -66,19 +67,19 @@ wk.setup {
 
 
 local opts = {
-  mode = "n", -- NORMAL mode
+  mode = "n",     -- NORMAL mode
   prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
+  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true,  -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = false, -- use `nowait` when creating keymaps
 }
 
 local visual_opts = {
-  mode = "v", -- NORMAL mode
+  mode = "v",     -- NORMAL mode
   prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
+  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true,  -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = false, -- use `nowait` when creating keymaps
 }
@@ -99,13 +100,11 @@ local normal_mode_mappings = {
   ["7"] = "which_key_ignore",
   ["8"] = "which_key_ignore",
   ["9"] = "which_key_ignore",
-
   -- single
   ["="] = { '<cmd>vertical resize +5<CR>', 'resize +5' },
   ["-"] = { '<cmd>vertical resize -5<CR>', 'resize +5' },
   ["v"] = { '<C-W>v', 'split right' },
   ["V"] = { '<C-W>s', 'split below' },
-
   ["/"] = {
     name = "CrystalVim",
     ["/"] = { '<cmd>Alpha<CR>', 'open dashboard' },
@@ -116,14 +115,12 @@ local normal_mode_mappings = {
     s = { '<cmd>lua require("plugins.telescope.pickers.edit_nvim")()<CR>', 'search config' },
     q = { '<cmd>qa<CR>', 'quit' }
   },
-
   a = {
     name = "Actions",
     n = { '<cmd>enew<CR>', "new buffer" },
     u = { '<cmd>set nonumber!<CR>', 'line numbers' },
     r = { '<cmd>set norelativenumber!<CR>', 'relative number' },
   },
-
   b = {
     name = "Buffer",
     b = { '<cmd>BufferMovePrevious<CR>', 'Move back' },
@@ -135,7 +132,6 @@ local normal_mode_mappings = {
     n = { '<cmd>BufferMoveNext<CR>', 'Move next' },
     p = { '<cmd>BufferPick<CR>', 'Pick Buffer' },
   },
-
   g = {
     name = "Git",
     b = { "blame line" },
@@ -175,10 +171,10 @@ local normal_mode_mappings = {
     },
     -- s = { '<cmd>lua require("plugins.git.diffview").toggle_status()<CR>', 'status' },
   },
-
   p = {
     name = "Project",
-    f = { "<CMD>lua require('plugins.telescope.pickers.project_files')({ default_text = vim.fn.expand('<cword>'), initial_mode = 'normal' })<CR>",
+    f = {
+      "<CMD>lua require('plugins.telescope.pickers.project_files')({ default_text = vim.fn.expand('<cword>'), initial_mode = 'normal' })<CR>",
       'file' },
     w = { "<CMD>lua require('telescope.builtin').grep_string({ initial_mode = 'normal' })<CR>", 'word' },
     -- l = { "<cmd>lua require'telescope'.extensions.repo.cached_list{file_ignore_patterns={'/%.cache/', '/%.cargo/', '/%.local/', '/%timeshift/', '/usr/', '/srv/', '/%.oh%-my%-zsh', '/Library/', '/%.cocoapods/'}}<CR>",
@@ -187,7 +183,6 @@ local normal_mode_mappings = {
     -- s = { "<cmd>SessionManager save_current_session<CR>", 'save session' },
     t = { "<cmd>TodoTrouble<CR>", 'todo' },
   },
-
   s = {
     name = "Search",
     a = { '<cmd>lua require"telescope.builtin".find_files({ hidden = true })<CR>', 'all files' },
@@ -197,21 +192,17 @@ local normal_mode_mappings = {
     s = { '<cmd>Telescope search_history theme=dropdown<CR>', 'search history' },
     n = { "<cmd>Snip<CR>", 'snippets' }
   },
-
   u = { '<cmd>UndotreeToggle<CR>', 'undo tree' },
-
   [" "] = { '<cmd>:lua vim.lsp.buf.format()<CR>', 'format' },
 }
 
 local visual_mode_mappings = {
   -- single
   ["s"] = { "<cmd>'<,'>sort<CR>", 'sort' },
-
   a = {
     name = "Actions",
     c = { 'comment box' },
   },
-
   -- g = {
   --   name = "Git",
   --   h = {
@@ -225,7 +216,6 @@ local visual_mode_mappings = {
     name = "Project",
     r = { 'refactor' },
   },
-
   -- t = {
   --   name = "Table Mode",
   --   t = { 'tableize' },
@@ -272,22 +262,22 @@ M.attach_common_lsp = function(bufnr)
   }, default_opts))
 
   wk.register({
-    c = {
-      name = "LSP",
-      a = { "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", 'range code action' },
-      f = { "<cmd>'<.'>lua vim.lsp.buf.range_formatting()<CR>", 'range format' },
-    }
-  },
+      c = {
+        name = "LSP",
+        a = { "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", 'range code action' },
+        f = { "<cmd>'<.'>lua vim.lsp.buf.range_formatting()<CR>", 'range format' },
+      }
+    },
     utils.spread({ buffer = bufnr, mode = "v" }, default_opts))
-
 end
 
 M.attach_typescript = function(bufnr)
   wk.register({
-    c = utils.spread({
-      i = { "<cmd>TypescriptAddMissingImports<CR>", 'add missing imports' }
-    }, common_lsp_keys)
-  },
+      c = utils.spread({
+        i = { "<cmd>TypescriptAddMissingImports<CR>", 'add missing imports' },
+        u = { "<cmd>TypescriptRemoveUnused<CR>", 'remove unused' }
+      }, common_lsp_keys)
+    },
     utils.spread({
       buffer = bufnr,
       mode = "n"
@@ -303,9 +293,9 @@ M.attach_spectre = function(bufnr)
     ["v"] = { '[SPECTRE] Change view mode' },
   }, {
     buffer = bufnr,
-    mode = "n", -- NORMAL mode
+    mode = "n",     -- NORMAL mode
     prefix = "<leader>",
-    silent = true, -- use `silent` when creating keymaps
+    silent = true,  -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
     nowait = false, -- use `nowait` when creating keymaps
   })
@@ -316,9 +306,9 @@ M.attach_zen = function(bufnr)
     ["z"] = { '<cmd>ZenMode<CR>', 'zen' },
   }, {
     buffer = bufnr,
-    mode = "n", -- NORMAL mode
+    mode = "n",     -- NORMAL mode
     prefix = "<leader>",
-    silent = true, -- use `silent` when creating keymaps
+    silent = true,  -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
     nowait = false, -- use `nowait` when creating keymaps
   })
@@ -336,9 +326,9 @@ M.attach_npm = function(bufnr)
     }
   }, {
     buffer = bufnr,
-    mode = "n", -- NORMAL mode
+    mode = "n",     -- NORMAL mode
     prefix = "<leader>",
-    silent = true, -- use `silent` when creating keymaps
+    silent = true,  -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
     nowait = false, -- use `nowait` when creating keymaps
   })
@@ -346,23 +336,23 @@ end
 
 M.attach_cargo = function(bufnr)
   wk.register({
-    c = {
-      name = "crates",
-      t = { '<cmd>lua require("crates").toggle()<CR>', 'toggle' },
-      r = { '<cmd>lua require("crates").reload()<CR>', 'reload' },
-      v = { '<cmd>lua require("crates").show_versions_popup()<CR>', 'versions popup' },
-      f = { '<cmd>lua require("crates").show_features_popup()<CR>', 'features popup' },
-      d = { '<cmd>lua require("crates").show_dependencies_popup()<CR>', 'dependencies popup' },
-      u = { '<cmd>lua require("crates").update_crate()<CR>', 'update' },
-      a = { '<cmd>lua require("crates").update_all_crates()<CR>', 'update all' },
-      U = { '<cmd>lua require("crates").upgrade_crate()<CR>', 'upgrade' },
-      A = { '<cmd>lua require("crates").upgrade_all_crates()<CR>', 'upgrade all' },
-      H = { '<cmd>lua require("crates").open_homepage()<CR>', 'homepage' },
-      R = { '<cmd>lua require("crates").open_repository()<CR>', 'repository' },
-      D = { '<cmd>lua require("crates").open_documentation()<CR>', 'documentation' },
-      C = { '<cmd>lua require("crates").open_crates_io()<CR>', 'crates io' },
-    }
-  },
+      c = {
+        name = "crates",
+        t = { '<cmd>lua require("crates").toggle()<CR>', 'toggle' },
+        r = { '<cmd>lua require("crates").reload()<CR>', 'reload' },
+        v = { '<cmd>lua require("crates").show_versions_popup()<CR>', 'versions popup' },
+        f = { '<cmd>lua require("crates").show_features_popup()<CR>', 'features popup' },
+        d = { '<cmd>lua require("crates").show_dependencies_popup()<CR>', 'dependencies popup' },
+        u = { '<cmd>lua require("crates").update_crate()<CR>', 'update' },
+        a = { '<cmd>lua require("crates").update_all_crates()<CR>', 'update all' },
+        U = { '<cmd>lua require("crates").upgrade_crate()<CR>', 'upgrade' },
+        A = { '<cmd>lua require("crates").upgrade_all_crates()<CR>', 'upgrade all' },
+        H = { '<cmd>lua require("crates").open_homepage()<CR>', 'homepage' },
+        R = { '<cmd>lua require("crates").open_repository()<CR>', 'repository' },
+        D = { '<cmd>lua require("crates").open_documentation()<CR>', 'documentation' },
+        C = { '<cmd>lua require("crates").open_crates_io()<CR>', 'crates io' },
+      }
+    },
     { buffer = bufnr, mode = "n", prefix = "<leader>", silent = true, noremap = true, nowait = false }
   )
 

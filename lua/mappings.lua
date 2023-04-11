@@ -69,6 +69,9 @@ keymap("n", "<S-Enter>", ":call append(line('.') -1 , '')<CR>", silent)
 -- Toggle Tagbar
 keymap("n", "<F8>", "<cmd>:TagbarToggle<CR>", silent)
 
+-- Toggle Ranger
+keymap("n", "<F7>", "<cmd>:RnvimrToggle<CR>", silent)
+
 -- Open links under cursor in browser with gx
 if vim.fn.has('macunix') == 1 then
   keymap("n", "gx", "<cmd>silent execute '!open ' . shellescape('<cWORD>')<CR>", silent)
@@ -80,8 +83,8 @@ end
 keymap("n", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", silent)
 keymap("v", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", silent)
 
--- File explorer
-keymap("n", "<leader>e", "<cmd>lua require'nvim-tree'.toggle()<CR>", silent)
+-- -- File explorer
+-- keymap("n", "<leader>e", "<cmd>lua require'nvim-tree.api'.toggle()<CR>", silent)
 
 -- Package (package.json / Cargo.toml)
 keymap("n", "gp", utils.open_package, silent)

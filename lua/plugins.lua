@@ -1,12 +1,15 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-local compile_path = install_path .. "/plugin/packer_compiled.lua"
-local packer_bootstrap = nil
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-    install_path })
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
+
+local packer_bootstrap = ensure_packer()
 
 return require('packer').startup({
   function(use)
@@ -27,7 +30,7 @@ return require('packer').startup({
     -- use { 'EdenEast/nightfox.nvim', config = "require('plugins.glamour.nightfox')" }
 
     -- Treesitter
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.syntax.treesitter')" }
+    use { 'nvim-treesitter/nvim-treesitter', config = "require('plugins.syntax.treesitter')" }
     use { 'windwp/nvim-ts-autotag', after = { 'nvim-treesitter' } }
     use { 'p00f/nvim-ts-rainbow', after = { 'nvim-treesitter' } }
     use { 'nvim-treesitter/playground', after = { 'nvim-treesitter' } }
@@ -43,10 +46,11 @@ return require('packer').startup({
     use { 'numToStr/Comment.nvim', config = "require('plugins.syntax.comment')",
       after = "nvim-ts-context-commentstring" }
     use { 'LudoPinelli/comment-box.nvim' }
-    use { 'L3MON4D3/LuaSnip', after = 'cmp_luasnip', config = "require('plugins.syntax.luasnip')",
+    use { 'L3MON4D3/LuaSnip', config = "require('plugins.syntax.luasnip')",
       run = "make install_jsregexp" }
     use { 'axelvc/template-string.nvim', config = "require('plugins.syntax.template-string')",
       after = 'nvim-treesitter' }
+    use { 'sbdchd/neoformat' }
 
     -- UI
     use { 'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter" }
@@ -79,17 +83,19 @@ return require('packer').startup({
     use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig", config = "require('plugins.lsp.navic')" }
     use { 'vuki656/package-info.nvim', event = "BufEnter package.json",
       config = "require('plugins.lsp.package-info')" }
-    use { 'kdarkhan/rust-tools.nvim', config = "require('plugins.lsp.rust-tools')", requires = { 'neovim/nvim-lspconfig' } }
-    use { 'Saecki/crates.nvim', config = "require('plugins.lsp.crates')", event = "BufRead Cargo.toml"}
+    use { 'simrat39/rust-tools.nvim', config = "require('plugins.lsp.rust-tools')",
+      requires = { 'neovim/nvim-lspconfig' } }
+    use { 'Saecki/crates.nvim', config = "require('plugins.lsp.crates')", event = "BufRead Cargo.toml" }
     use { 'lvimuser/lsp-inlayhints.nvim', config = function() require('lsp-inlayhints').setup() end }
+    use { 'habamax/vim-godot' }
 
     -- CMP
-    use { 'hrsh7th/nvim-cmp', event = 'BufEnter', config = "require('plugins.lsp.cmp')" }
+    use { 'hrsh7th/nvim-cmp', event = 'BufEnter' }
     use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }
-    use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
+    use { 'saadparwaiz1/cmp_luasnip', after = { 'nvim-cmp', 'LuaSnip' }, config = "require('plugins.lsp.cmp')" }
     use { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-calc', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' }
@@ -117,7 +123,7 @@ return require('packer').startup({
     use { 'gpanders/editorconfig.nvim' }
     use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
-
+    use { 'kevinhwang91/rnvimr' }
 
     -- Git
     use { 'kdheepak/lazygit.nvim' }
@@ -163,7 +169,6 @@ return require('packer').startup({
     end
   end,
   config = {
-    compile_path = compile_path,
     disable_commands = true,
     max_jobs = 50,
     display = {

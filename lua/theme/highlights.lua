@@ -3,6 +3,10 @@ local crystal = require("theme.crystal")
 return function(hl, c)
   local none = "NONE"
 
+  hl.MatchParen = {
+    fg = crystal.primary
+  }
+
   hl.CrystalPrimary = {
     fg = crystal.primary
   }

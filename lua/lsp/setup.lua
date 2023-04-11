@@ -1,4 +1,7 @@
-local lspconfig = require("lspconfig")
+local ok, lspconfig = pcall(require, "lspconfig")
+if not ok then
+  return
+end
 local ufo_config = require('plugins.nvim-ufo')
 
 --  ╭──────────────────────────────────────────────────────────╮
@@ -8,6 +11,8 @@ local ufo_config = require('plugins.nvim-ufo')
 local handlers = {
   ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
   ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
+  ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+    { virtual_text = true }),
 }
 
 local navic = require('nvim-navic')
@@ -20,6 +25,7 @@ local function on_attach(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     navic.attach(client, bufnr)
   end
+  require('notify')("LSP attached", "info", { title = "LSP", timeout = 2000 })
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -33,9 +39,9 @@ local typescript_ok, typescript = pcall(require, 'typescript')
 if typescript_ok then
   typescript.setup({
     disable_commands = false, -- prevent the plugin from creating Vim commands
-    debug = false, -- enable debug logging for commands
+    debug = false,            -- enable debug logging for commands
     go_to_source_definition = {
-      fallback = true, -- fall back to standard LSP definition on failure
+      fallback = true,        -- fall back to standard LSP definition on failure
     },
     server = {
       handlers = handlers,
@@ -52,11 +58,11 @@ lspconfig.eslint.setup {
   settings = require('lsp.servers.eslint').settings,
 }
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
   handlers = handlers,
   capabilities = capabilities,
   on_attach = on_attach,
-  settings = require('lsp.servers.sumneko_lua').settings
+  settings = require('lsp.servers.lua_ls').settings
 }
 
 lspconfig.jsonls.setup {
@@ -66,12 +72,23 @@ lspconfig.jsonls.setup {
   settings = require('lsp.servers.jsonls').settings,
 }
 
-for _, server in ipairs { "html" } do
+lspconfig.gdscript.setup { capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol
+.make_client_capabilities()) }
+
+for _, server in ipairs { "html", "sqlls", "clangd", "graphql" } do
   lspconfig[server].setup {
     handlers = handlers,
     capabilities = capabilities
   }
 end
+
+vim.api.nvim_create_user_command("Car",
+  function(opts)
+    vim.cmd("!g++ % && ./a.out " .. opts.args)
+  end
+  , { nargs = "?" }
+)
+
 
 require('ufo').setup({
   fold_virt_text_handler = ufo_config.handler,

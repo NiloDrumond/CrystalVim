@@ -1,21 +1,29 @@
 local M = {}
-local Job = require 'plenary.job'
+local job_ok, Job = pcall(require, 'plenary.job')
 
 M.add_whitespaces = function(number)
   return string.rep(" ", number)
 end
 
+M.identify_sh = function(bufnr)
+  local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 0)
+  print(vim.inspect(lines))
+end
+
 M.open_package = function()
+  -- TODO: definir package.json ou cargo de acordo com o tipo do arquivo
   local result = nil
-  Job:new({
-    command = "fd",
-    args = { [[package\.json|Cargo\.toml]] },
-    on_stdout = function(_, data)
-      if data ~= nil and result == nil then
-        result = data
+  if (job_ok) then
+    Job:new({
+      command = "fd",
+      args = { [[package\.json|Cargo\.toml]] },
+      on_stdout = function(_, data)
+        if data ~= nil and result == nil then
+          result = data
+        end
       end
-    end
-  }):sync()
+    }):sync()
+  end
   if result ~= nil then
     vim.cmd('e ' .. result)
   end

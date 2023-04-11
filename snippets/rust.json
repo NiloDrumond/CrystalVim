@@ -1,0 +1,131 @@
+{
+  "allow": {
+    "prefix": "allow",
+    "body": [
+      "#![allow(${1})]"
+    ],
+    "description": "#![allow(…)]"
+  },
+  "deny": {
+    "prefix": "deny",
+    "body": [
+      "#![deny(${1})]"
+    ],
+    "description": "#![deny(…)]"
+  },
+  "warn": {
+    "prefix": "warn",
+    "body": [
+      "#![warn(${1})]"
+    ],
+    "description": "#![warn(…)]"
+  },
+  "feature": {
+    "prefix": "feature",
+    "body": [
+      "#![feature(${1})]"
+    ],
+    "description": "#![feature(…)]"
+  },
+  "macro_use": {
+    "prefix": "macro_use",
+    "body": [
+      "#[macro_use(${1})]"
+    ],
+    "description": "#[macro_use(…)]"
+  },
+  "repr": {
+    "prefix": "repr",
+    "body": [
+      "#[repr(${1})]"
+    ],
+    "description": "#[repr(…)]"
+  },
+  "cfg": {
+    "prefix": "cfg",
+    "body": [
+      "#[cfg(${1})]"
+    ],
+    "description": "#[cfg(…)]"
+  },
+  "cfg_attr": {
+    "prefix": "cfg_attr",
+    "body": [
+      "#[cfg_attr(${1}, ${2})]"
+    ],
+    "description": "#[cfg_attr(…, …)]"
+  },
+  "cfg!": {
+    "prefix": "cfg!",
+    "body": [
+      "cfg!(${1})"
+    ],
+    "description": "cfg!(…)"
+  },
+  "option_env": {
+    "prefix": "option_env",
+    "body": [
+      "option_env!(\"${1}\")"
+    ],
+    "description": "option_env!(\"…\")"
+  },
+  "panic": {
+    "prefix": "panic",
+    "body": [
+      "panic!(\"${1}\");"
+    ],
+    "description": "panic!(…);"
+  },
+  "thread_local": {
+    "prefix": "thread_local",
+    "body": [
+      "thread_local!(static ${1:STATIC}: ${2:Type} = ${4:init});"
+    ],
+    "description": "thread_local!(static …: … = …);"
+  },
+  "bench": {
+    "prefix": "bench",
+    "body": [
+      "#[bench]",
+      "fn ${1:name}(b: &mut test::Bencher) {",
+      "    ${2:b.iter(|| ${3:/* benchmark code */})}",
+      "}"
+    ],
+    "description": "#[bench]"
+  },
+  "derive": {
+    "prefix": "drv",
+    "body": [
+      "#[derive(${1})]"
+    ],
+    "description": "#[derive(…)]"
+  },
+  "macro_rules": {
+    "prefix": "macro_rules",
+    "body": [
+      "macro_rules! ${1:name} {",
+      "    (${2}) => (${3})",
+      "}"
+    ],
+    "description": "macro_rules! … { … }"
+  },
+  "main": {
+    "prefix": "main",
+    "body": [
+      "fn main() {",
+      "    ${1:unimplemented!();}",
+      "}"
+    ],
+    "description": "fn main() { … }"
+  },
+  "test": {
+    "prefix": "test",
+    "body": [
+      "#[test]",
+      "fn ${1:name}() {",
+      "    ${2:unimplemented!();}",
+      "}"
+    ],
+    "description": "#[test]"
+  }
+}

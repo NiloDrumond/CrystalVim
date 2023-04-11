@@ -164,7 +164,7 @@ local opts = {
     -- setting it to false may improve startup time
     standalone = true,
     on_attach = function(_, bufnr)
-      vim.keymap.set("n", "m", rt.hover_actions.hover_actions, {buffer = bufnr})
+      vim.keymap.set("n", "m", rt.hover_actions.hover_actions, { buffer = bufnr })
     end
   }, -- rust-analyzer options
 
