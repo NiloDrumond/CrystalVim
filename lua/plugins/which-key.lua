@@ -190,6 +190,7 @@ local normal_mode_mappings = {
     h = { '<cmd>Telescope oldfiles hidden=true<CR>', 'file history' },
     H = { '<cmd>lua require("plugins.telescope.pickers.command_history")()<CR>', 'command history' },
     s = { '<cmd>Telescope search_history theme=dropdown<CR>', 'search history' },
+    r = { '<cmd>Telescope resume<CR>', 'resume telescope' },
     n = { "<cmd>Snip<CR>", 'snippets' }
   },
   u = { '<cmd>UndotreeToggle<CR>', 'undo tree' },

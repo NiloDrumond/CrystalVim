@@ -75,6 +75,22 @@ lspconfig.jsonls.setup {
 lspconfig.gdscript.setup { capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol
 .make_client_capabilities()) }
 
+lspconfig.tailwindcss.setup({
+  capabilities = require("lsp.servers.tailwindcss").capabilities,
+  filetypes = require("lsp.servers.tailwindcss").filetypes,
+  handlers = handlers,
+  init_options = require("lsp.servers.tailwindcss").init_options,
+  on_attach = require("lsp.servers.tailwindcss").on_attach,
+  settings = require("lsp.servers.tailwindcss").settings,
+})
+
+lspconfig.cssls.setup {
+  capabilities = capabilities,
+  handlers = handlers,
+  on_attach = on_attach,
+  settings = require("lsp.servers.cssls").settings
+}
+
 for _, server in ipairs { "html", "sqlls", "clangd", "graphql" } do
   lspconfig[server].setup {
     handlers = handlers,

@@ -346,7 +346,7 @@ _G.packer_plugins = {
     url = "https://github.com/kevinhwang91/nvim-bqf"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-nvim-lsp", "cmp-cmdline", "cmp-path", "cmp-nvim-lsp-signature-help", "cmp-nvim-lua", "cmp-calc", "cmp-buffer", "cmp-npm", "cmp_luasnip" },
+    after = { "cmp_luasnip", "cmp-npm", "cmp-nvim-lsp", "cmp-nvim-lua", "cmp-calc", "cmp-nvim-lsp-signature-help", "cmp-cmdline", "cmp-buffer", "cmp-path" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -397,6 +397,11 @@ _G.packer_plugins = {
     path = "/home/nilo/.local/share/nvim/site/pack/packer/start/nvim-spectre",
     url = "https://github.com/nvim-pack/nvim-spectre"
   },
+  ["nvim-spider"] = {
+    loaded = true,
+    path = "/home/nilo/.local/share/nvim/site/pack/packer/start/nvim-spider",
+    url = "https://github.com/chrisgrieser/nvim-spider"
+  },
   ["nvim-surround"] = {
     config = { "\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0" },
     loaded = true,
@@ -416,7 +421,7 @@ _G.packer_plugins = {
     url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "playground", "nvim-treesitter-context", "tree-climber.nvim", "template-string.nvim", "nvim-treesitter-textsubjects", "nvim-autopairs", "nvim-treesitter-textobjects", "nvim-ts-autotag", "nvim-ts-rainbow", "nvim-ts-context-commentstring" },
+    after = { "tree-climber.nvim", "playground", "nvim-ts-rainbow", "nvim-ts-context-commentstring", "nvim-autopairs", "nvim-treesitter-context", "template-string.nvim", "nvim-ts-autotag", "nvim-treesitter-textsubjects", "nvim-treesitter-textobjects" },
     config = { "require('plugins.syntax.treesitter')" },
     loaded = true,
     only_config = true,
@@ -578,6 +583,12 @@ _G.packer_plugins = {
     path = "/home/nilo/.local/share/nvim/site/pack/packer/opt/tree-climber.nvim",
     url = "https://github.com/drybalka/tree-climber.nvim"
   },
+  ["tsc.nvim"] = {
+    config = { "require('plugins.syntax.tsc')" },
+    loaded = true,
+    path = "/home/nilo/.local/share/nvim/site/pack/packer/start/tsc.nvim",
+    url = "https://github.com/dmmulroy/tsc.nvim"
+  },
   ["twilight.nvim"] = {
     config = { "require('plugins.glamour.twilight')" },
     loaded = true,
@@ -638,162 +649,166 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: neoscroll.nvim
-time([[Config for neoscroll.nvim]], true)
-require('plugins.movement.neoscroll')
-time([[Config for neoscroll.nvim]], false)
--- Config for: vim-rooter
-time([[Config for vim-rooter]], true)
-require('plugins.rooter')
-time([[Config for vim-rooter]], false)
--- Config for: tagbar
-time([[Config for tagbar]], true)
-require('plugins.syntax.tagbar')
-time([[Config for tagbar]], false)
--- Config for: barbar.nvim
-time([[Config for barbar.nvim]], true)
-require('plugins.ui.barbar')
-time([[Config for barbar.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('plugins.syntax.treesitter')
-time([[Config for nvim-treesitter]], false)
--- Config for: stay-in-place.nvim
-time([[Config for stay-in-place.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18stay-in-place\frequire\0", "config", "stay-in-place.nvim")
-time([[Config for stay-in-place.nvim]], false)
--- Config for: flit.nvim
-time([[Config for flit.nvim]], true)
-require('plugins.movement.flit')
-time([[Config for flit.nvim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('plugins.glamour.colorizer')
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: hlargs.nvim
-time([[Config for hlargs.nvim]], true)
-try_loadstring("\27LJ\2\nI\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\ncolor\f#F7768E\nsetup\vhlargs\frequire\0", "config", "hlargs.nvim")
-time([[Config for hlargs.nvim]], false)
--- Config for: nvim-surround
-time([[Config for nvim-surround]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
-time([[Config for nvim-surround]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require('plugins.syntax.luasnip')
-time([[Config for LuaSnip]], false)
 -- Config for: twilight.nvim
 time([[Config for twilight.nvim]], true)
 require('plugins.glamour.twilight')
 time([[Config for twilight.nvim]], false)
--- Config for: rust-tools.nvim
-time([[Config for rust-tools.nvim]], true)
-require('plugins.lsp.rust-tools')
-time([[Config for rust-tools.nvim]], false)
 -- Config for: leap.nvim
 time([[Config for leap.nvim]], true)
 require('plugins.movement.leap')
 time([[Config for leap.nvim]], false)
--- Config for: dressing.nvim
-time([[Config for dressing.nvim]], true)
-require('plugins.ui.dressing')
-time([[Config for dressing.nvim]], false)
--- Config for: alpha-nvim
-time([[Config for alpha-nvim]], true)
-require('plugins.ui.alpha')
-time([[Config for alpha-nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require('plugins.ui.tree')
-time([[Config for nvim-tree.lua]], false)
--- Config for: lsp-inlayhints.nvim
-time([[Config for lsp-inlayhints.nvim]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19lsp-inlayhints\frequire\0", "config", "lsp-inlayhints.nvim")
-time([[Config for lsp-inlayhints.nvim]], false)
--- Config for: lsp-trouble.nvim
-time([[Config for lsp-trouble.nvim]], true)
-require('plugins.lsp.trouble')
-time([[Config for lsp-trouble.nvim]], false)
--- Config for: todo-comments.nvim
-time([[Config for todo-comments.nvim]], true)
-require('plugins.todo-comments')
-time([[Config for todo-comments.nvim]], false)
--- Config for: nvim-toggleterm.lua
-time([[Config for nvim-toggleterm.lua]], true)
-require('plugins.ui.toggleterm')
-time([[Config for nvim-toggleterm.lua]], false)
--- Config for: zen-mode.nvim
-time([[Config for zen-mode.nvim]], true)
-require('plugins.glamour.zen')
-time([[Config for zen-mode.nvim]], false)
--- Config for: mason.nvim
-time([[Config for mason.nvim]], true)
-require('plugins.lsp.mason')
-time([[Config for mason.nvim]], false)
+-- Config for: tsc.nvim
+time([[Config for tsc.nvim]], true)
+require('plugins.syntax.tsc')
+time([[Config for tsc.nvim]], false)
+-- Config for: neoscroll.nvim
+time([[Config for neoscroll.nvim]], true)
+require('plugins.movement.neoscroll')
+time([[Config for neoscroll.nvim]], false)
 -- Config for: numb.nvim
 time([[Config for numb.nvim]], true)
 require('plugins.numb')
 time([[Config for numb.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('plugins.syntax.treesitter')
+time([[Config for nvim-treesitter]], false)
 -- Config for: indent-blankline.nvim
 time([[Config for indent-blankline.nvim]], true)
 require('plugins.glamour.indent')
 time([[Config for indent-blankline.nvim]], false)
--- Config for: nvim-scrollbar
-time([[Config for nvim-scrollbar]], true)
-require('plugins.ui.scrollbar')
-time([[Config for nvim-scrollbar]], false)
+-- Config for: lsp-inlayhints.nvim
+time([[Config for lsp-inlayhints.nvim]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19lsp-inlayhints\frequire\0", "config", "lsp-inlayhints.nvim")
+time([[Config for lsp-inlayhints.nvim]], false)
+-- Config for: stay-in-place.nvim
+time([[Config for stay-in-place.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18stay-in-place\frequire\0", "config", "stay-in-place.nvim")
+time([[Config for stay-in-place.nvim]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require('plugins.syntax.luasnip')
+time([[Config for LuaSnip]], false)
+-- Config for: todo-comments.nvim
+time([[Config for todo-comments.nvim]], true)
+require('plugins.todo-comments')
+time([[Config for todo-comments.nvim]], false)
+-- Config for: hlargs.nvim
+time([[Config for hlargs.nvim]], true)
+try_loadstring("\27LJ\2\nI\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\ncolor\f#F7768E\nsetup\vhlargs\frequire\0", "config", "hlargs.nvim")
+time([[Config for hlargs.nvim]], false)
+-- Config for: rust-tools.nvim
+time([[Config for rust-tools.nvim]], true)
+require('plugins.lsp.rust-tools')
+time([[Config for rust-tools.nvim]], false)
+-- Config for: barbar.nvim
+time([[Config for barbar.nvim]], true)
+require('plugins.ui.barbar')
+time([[Config for barbar.nvim]], false)
+-- Config for: zen-mode.nvim
+time([[Config for zen-mode.nvim]], true)
+require('plugins.glamour.zen')
+time([[Config for zen-mode.nvim]], false)
 -- Config for: vim-visual-multi
 time([[Config for vim-visual-multi]], true)
 require('plugins.vim-visual-multi')
 time([[Config for vim-visual-multi]], false)
--- Config for: nvim-navic
-time([[Config for nvim-navic]], true)
-require('plugins.lsp.navic')
-time([[Config for nvim-navic]], false)
--- Config for: git-conflict.nvim
-time([[Config for git-conflict.nvim]], true)
-require('plugins.git.conflict')
-time([[Config for git-conflict.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('plugins.glamour.colorizer')
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: mason.nvim
+time([[Config for mason.nvim]], true)
+require('plugins.lsp.mason')
+time([[Config for mason.nvim]], false)
+-- Config for: vim-rooter
+time([[Config for vim-rooter]], true)
+require('plugins.rooter')
+time([[Config for vim-rooter]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require('plugins.ui.tree')
+time([[Config for nvim-tree.lua]], false)
+-- Config for: flit.nvim
+time([[Config for flit.nvim]], true)
+require('plugins.movement.flit')
+time([[Config for flit.nvim]], false)
+-- Config for: alpha-nvim
+time([[Config for alpha-nvim]], true)
+require('plugins.ui.alpha')
+time([[Config for alpha-nvim]], false)
+-- Config for: nvim-toggleterm.lua
+time([[Config for nvim-toggleterm.lua]], true)
+require('plugins.ui.toggleterm')
+time([[Config for nvim-toggleterm.lua]], false)
 -- Config for: nvim-notify
 time([[Config for nvim-notify]], true)
 require('plugins.ui.notify')
 time([[Config for nvim-notify]], false)
+-- Config for: git-conflict.nvim
+time([[Config for git-conflict.nvim]], true)
+require('plugins.git.conflict')
+time([[Config for git-conflict.nvim]], false)
+-- Config for: dressing.nvim
+time([[Config for dressing.nvim]], true)
+require('plugins.ui.dressing')
+time([[Config for dressing.nvim]], false)
+-- Config for: nvim-navic
+time([[Config for nvim-navic]], true)
+require('plugins.lsp.navic')
+time([[Config for nvim-navic]], false)
+-- Config for: tagbar
+time([[Config for tagbar]], true)
+require('plugins.syntax.tagbar')
+time([[Config for tagbar]], false)
+-- Config for: lsp-trouble.nvim
+time([[Config for lsp-trouble.nvim]], true)
+require('plugins.lsp.trouble')
+time([[Config for lsp-trouble.nvim]], false)
+-- Config for: nvim-surround
+time([[Config for nvim-surround]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
+time([[Config for nvim-surround]], false)
+-- Config for: nvim-scrollbar
+time([[Config for nvim-scrollbar]], true)
+require('plugins.ui.scrollbar')
+time([[Config for nvim-scrollbar]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
-vim.cmd [[ packadd plenary.nvim ]]
 vim.cmd [[ packadd nvim-hlslens ]]
 
 -- Config for: nvim-hlslens
 require('plugins.ui.hlslens')
 
-vim.cmd [[ packadd telescope-fzf-native.nvim ]]
-vim.cmd [[ packadd telescope.nvim ]]
-
--- Config for: telescope.nvim
-require('plugins.telescope')
-
-vim.cmd [[ packadd nvim-ts-rainbow ]]
-vim.cmd [[ packadd tree-climber.nvim ]]
-vim.cmd [[ packadd nvim-treesitter-textobjects ]]
-vim.cmd [[ packadd nvim-ts-autotag ]]
+vim.cmd [[ packadd playground ]]
+vim.cmd [[ packadd nvim-treesitter-context ]]
+vim.cmd [[ packadd nvim-treesitter-textsubjects ]]
 vim.cmd [[ packadd template-string.nvim ]]
 
 -- Config for: template-string.nvim
 require('plugins.syntax.template-string')
 
-vim.cmd [[ packadd playground ]]
-vim.cmd [[ packadd nvim-treesitter-context ]]
-vim.cmd [[ packadd nvim-treesitter-textsubjects ]]
 vim.cmd [[ packadd nvim-autopairs ]]
 
 -- Config for: nvim-autopairs
 require('plugins.syntax.autopairs')
 
+vim.cmd [[ packadd nvim-treesitter-textobjects ]]
+vim.cmd [[ packadd tree-climber.nvim ]]
 vim.cmd [[ packadd nvim-ts-context-commentstring ]]
 vim.cmd [[ packadd Comment.nvim ]]
 
 -- Config for: Comment.nvim
 require('plugins.syntax.comment')
+
+vim.cmd [[ packadd nvim-ts-autotag ]]
+vim.cmd [[ packadd nvim-ts-rainbow ]]
+vim.cmd [[ packadd plenary.nvim ]]
+vim.cmd [[ packadd telescope-fzf-native.nvim ]]
+vim.cmd [[ packadd telescope.nvim ]]
+
+-- Config for: telescope.nvim
+require('plugins.telescope')
 
 time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]
@@ -804,11 +819,11 @@ vim.cmd [[au FileType qf ++once lua require("packer.load")({'nvim-bqf'}, { ft = 
 time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufRead Cargo.toml ++once lua require("packer.load")({'crates.nvim'}, { event = "BufRead Cargo.toml" }, _G.packer_plugins)]]
+vim.cmd [[au BufEnter * ++once lua require("packer.load")({'nvim-cmp'}, { event = "BufEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au BufEnter package.json ++once lua require("packer.load")({'package-info.nvim'}, { event = "BufEnter package.json" }, _G.packer_plugins)]]
 vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
-vim.cmd [[au BufEnter * ++once lua require("packer.load")({'nvim-cmp'}, { event = "BufEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'which-key.nvim', 'lualine.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead Cargo.toml ++once lua require("packer.load")({'crates.nvim'}, { event = "BufRead Cargo.toml" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

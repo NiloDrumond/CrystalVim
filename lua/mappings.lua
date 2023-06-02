@@ -29,6 +29,12 @@ keymap({ "n", "v", "o" }, 'L', "<cmd>lua require('tree-climber').goto_next()<CR>
 keymap({ "n", "v", "o" }, 'H', "<cmd>lua require('tree-climber').goto_prev()<CR>", silent)
 keymap({ 'v', 'o' }, 'M', "<cmd>lua require('tree-climber').select_node()<CR>", silent)
 
+-- SpiderMotions
+keymap({"n", "o", "x"}, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
+keymap({"n", "o", "x"}, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
+keymap({"n", "o", "x"}, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
+keymap({"n", "o", "x"}, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-ge" })
+
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Editing                                                  │
 --  ╰──────────────────────────────────────────────────────────╯

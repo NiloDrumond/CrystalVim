@@ -46,7 +46,7 @@ local _, pwk = pcall(require, "plugins.which-key")
 -- LSP
 vim.api.nvim_create_autocmd("BufEnter",
   {
-    pattern = { "*.js", "*.jsx", "*.lua", "*.rs", "*.gd" },
+    pattern = { "*.js", "*.jsx", "*.lua", "*.rs", "*.gd", "*.cpp" },
     callback = function()
       pwk.attach_common_lsp(0)
     end

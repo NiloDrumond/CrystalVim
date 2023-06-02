@@ -51,6 +51,7 @@ return require('packer').startup({
     use { 'axelvc/template-string.nvim', config = "require('plugins.syntax.template-string')",
       after = 'nvim-treesitter' }
     use { 'sbdchd/neoformat' }
+    use { 'dmmulroy/tsc.nvim', config = "require('plugins.syntax.tsc')" }
 
     -- UI
     use { 'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter" }
@@ -101,12 +102,13 @@ return require('packer').startup({
     use { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' }
     use { 'David-Kunz/cmp-npm', after = { 'nvim-cmp', 'plenary.nvim' }, config = "require('plugins.lsp.cmp-npm')" }
 
-    -- Movement
+    -- Motion
     use { 'gbprod/stay-in-place.nvim', config = function() require('stay-in-place').setup({}) end }
     use { 'mg979/vim-visual-multi', config = "require('plugins.vim-visual-multi')" }
     use { 'karb94/neoscroll.nvim', config = "require('plugins.movement.neoscroll')" }
     use { 'ggandor/leap.nvim', config = "require('plugins.movement.leap')", requires = { 'tpope/vim-repeat' } }
     use { 'ggandor/flit.nvim', config = "require('plugins.movement.flit')" }
+    use { "chrisgrieser/nvim-spider" }
 
     -- General
     use { 'AndrewRadev/splitjoin.vim' }
