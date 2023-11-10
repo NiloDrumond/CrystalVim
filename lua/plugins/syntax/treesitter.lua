@@ -1,5 +1,5 @@
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'lua', 'typescript', 'tsx', 'javascript', 'rust', 'toml', 'help', 'yaml', 'json', 'wgsl', 'css' },
+  ensure_installed = { 'lua', 'typescript', 'tsx', 'javascript', 'rust', 'toml', 'help', 'yaml', 'json', 'wgsl', 'css', 'svelte' },
   highlight = {
     enable = true,
     custom_captures = {
@@ -16,7 +16,8 @@ require('nvim-treesitter.configs').setup {
   --  ╰──────────────────────────────────────────────────────────╯
 
   autotag = {
-    enable = true
+    enable = true,
+    enable_close_on_slash = false,
   },
 
   rainbow = {

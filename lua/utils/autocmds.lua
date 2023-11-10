@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd("BufEnter",
 -- Typescript
 vim.api.nvim_create_autocmd("BufEnter",
   {
-    pattern = { "*.ts", "*.tsx" },
+    pattern = { "*.ts", "*.tsx", "*.svelte" },
     callback = function()
       pwk.attach_typescript(0)
     end

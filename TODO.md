@@ -17,3 +17,7 @@
   - https://github.com/uga-rosa/cmp-dictionary
   - https://github.com/tzachar/cmp-fuzzy-path
 
+
+# New Version
+- Rust open ctags with smaller width
+- need to figure out better use for arrow keys (I'm not actually using them)

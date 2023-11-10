@@ -34,22 +34,22 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 --  │ Servers                                                  │
 --  ╰──────────────────────────────────────────────────────────╯
 
-local typescript_ok, typescript = pcall(require, 'typescript')
-
-if typescript_ok then
-  typescript.setup({
-    disable_commands = false, -- prevent the plugin from creating Vim commands
-    debug = false,            -- enable debug logging for commands
-    go_to_source_definition = {
-      fallback = true,        -- fall back to standard LSP definition on failure
-    },
-    server = {
-      handlers = handlers,
-      on_attach = on_attach,
-      capabilities = capabilities
-    }
-  })
-end
+-- local typescript_ok, typescript = pcall(require, 'typescript')
+--
+-- if typescript_ok then
+--   typescript.setup({
+--     disable_commands = false, -- prevent the plugin from creating Vim commands
+--     debug = false,            -- enable debug logging for commands
+--     go_to_source_definition = {
+--       fallback = true,        -- fall back to standard LSP definition on failure
+--     },
+--     server = {
+--       handlers = handlers,
+--       on_attach = on_attach,
+--       capabilities = capabilities
+--     }
+--   })
+-- end
 
 lspconfig.eslint.setup {
   -- capabilities = capabilities,
@@ -91,9 +91,10 @@ lspconfig.cssls.setup {
   settings = require("lsp.servers.cssls").settings
 }
 
-for _, server in ipairs { "html", "sqlls", "clangd", "graphql" } do
+for _, server in ipairs { "html", "sqlls", "clangd", "graphql", "svelte" } do
   lspconfig[server].setup {
     handlers = handlers,
+    on_attach = on_attach,
     capabilities = capabilities
   }
 end

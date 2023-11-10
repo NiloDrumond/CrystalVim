@@ -37,7 +37,7 @@ wk.setup {
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = "➜", -- symbol used between a key and it's label
-    group = "+",      -- symbol prepended to a group
+    group = "+", -- symbol prepended to a group
   },
   window = {
     border = "rounded",       -- none, single, double, shadow, rounded
@@ -248,7 +248,6 @@ local common_lsp_keys = {
   a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'code action' },
   d = { '<cmd>TroubleToggle<CR>', 'local diagnostics' },
   D = { '<cmd>Telescope diagnostics wrap_results=true<CR>', 'workspace diagnostics' },
-  f = { "<cmd>lua vim.lsp.buf.format()<CR>", 'format' },
   l = { "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", 'line diagnostics' },
   r = { "<cmd>lua vim.lsp.buf.rename()<CR>", 'rename' },
   t = { '<cmd>LspToggleAutoFormat<CR>', 'toggle format on save' },
@@ -275,8 +274,11 @@ end
 M.attach_typescript = function(bufnr)
   wk.register({
       c = utils.spread({
-        i = { "<cmd>TypescriptAddMissingImports<CR>", 'add missing imports' },
-        u = { "<cmd>TypescriptRemoveUnused<CR>", 'remove unused' }
+        i = { "<cmd>TSToolsAddMissingImports<CR>", 'add missing imports' },
+        f = { "<cmd>TSToolsFixAll<CR>", 'fix all' },
+        u = { "<cmd>TSToolsRemoveUnusedImports<CR>", 'remove unused imports' },
+        U = { "<cmd>TSToolsRemoveUnused<CR>", 'remove unused statements' },
+        o = { "<cmd>TSToolsOrganizeImports<CR>", 'organize imports' }
       }, common_lsp_keys)
     },
     utils.spread({

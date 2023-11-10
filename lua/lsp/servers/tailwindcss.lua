@@ -21,7 +21,7 @@ local on_attach = function(client, bufnr)
 	end
 end
 
-local filetypes = { "html", "mdx", "javascript", "javascriptreact", "typescriptreact", "vue", "svelte" }
+local filetypes = { "html", "mdx", "javascript", "javascriptreact", "typescriptreact", "vue", "svelte", "css" }
 
 local init_options = {
 	userLanguages = {

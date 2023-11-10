@@ -16,7 +16,7 @@ return require('packer').startup({
     use 'wbthomason/packer.nvim'
 
     -- Pre-requisites
-    use_rocks 'jsregexp'
+    -- use_rocks 'jsregexp'
     use { 'lewis6991/impatient.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'nvim-lua/plenary.nvim' }
@@ -32,12 +32,27 @@ return require('packer').startup({
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', config = "require('plugins.syntax.treesitter')" }
     use { 'windwp/nvim-ts-autotag', after = { 'nvim-treesitter' } }
-    use { 'p00f/nvim-ts-rainbow', after = { 'nvim-treesitter' } }
+    use { 'hiphish/rainbow-delimiters.nvim', after = { 'nvim-treesitter', config = "require('plugins.syntax.rainbow')" } }
     use { 'nvim-treesitter/playground', after = { 'nvim-treesitter' } }
     use { 'm-demare/hlargs.nvim', config = function() require('hlargs').setup({ color = "#F7768E" }) end }
     use { 'nvim-treesitter/nvim-treesitter-textobjects', after = { 'nvim-treesitter' } }
     use { 'RRethy/nvim-treesitter-textsubjects', after = { 'nvim-treesitter' } }
-    use { 'nvim-treesitter/nvim-treesitter-context', after = { 'nvim-treesitter' } }
+    -- use { 'nvim-treesitter/nvim-treesitter-context', after = { 'nvim-treesitter' }, config = function()
+    --   require('treesitter-context').setup({
+    --     enable = true,      -- Enable this plugin (Can be enabled/disabled later via commands)
+    --     max_lines = 2,      -- How many lines the window should span. Values <= 0 mean no limit.
+    --     min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+    --     line_numbers = true,
+    --     multiline_threshold = 20, -- Maximum number of lines to show for a single context
+    --     trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+    --     mode = 'cursor',    -- Line used to calculate context. Choices: 'cursor', 'topline'
+    --     -- Separator between context and content. Should be a single character string, like '-'.
+    --     -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+    --     separator = nil,
+    --     zindex = 20, -- The Z-index of the context window
+    --     on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+    --   })
+    -- end }
     use { 'drybalka/tree-climber.nvim', after = { 'nvim-treesitter' } }
 
     -- Syntax
@@ -78,7 +93,10 @@ return require('packer').startup({
     use { 'neovim/nvim-lspconfig' }
 
     -- LSP addons
-    use { 'jose-elias-alvarez/typescript.nvim' }
+    use {
+      "pmizio/typescript-tools.nvim",
+      requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      config = "require('plugins.lsp.typescript-tools')" }
     use { 'folke/lsp-trouble.nvim', config = "require('plugins.lsp.trouble')" }
     use { 'onsails/lspkind-nvim' }
     use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig", config = "require('plugins.lsp.navic')" }
